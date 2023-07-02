@@ -1,0 +1,10 @@
+flask 
+flask-bootstrap 
+flask-moment 
+flask-wtf 
+flask-sqlalchemy 
+flask-script 
+flask-sqlacodegen 
+cymysql 
+pymysql 
+requests 
