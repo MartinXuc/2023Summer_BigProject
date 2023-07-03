@@ -10,4 +10,4 @@ from web.controllers.api.my import *
 
 @route_api.route('/')
 def index():
-    return "Mina Api V1.0"
+    return "miniapp version 0.0.1"

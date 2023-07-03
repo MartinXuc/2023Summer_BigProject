@@ -1,4 +1,4 @@
-SERVER_PORT = 9000
+SERVER_PORT = 5000
 DEBUG = False
 SQLALCHEMY_ECHO = False  # 打印sql语句
 AUTH_COOKIE_NAME = 'mooc_food'

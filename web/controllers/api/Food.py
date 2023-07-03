@@ -8,6 +8,7 @@ from common.models.member.MemberCart import MemberCart
 from web.controllers.api import route_api
 
 
+# 获取餐品list
 @route_api.route("/food/index")
 def food_index():
     resp = {'code': 200, 'msg': "操作成功", 'data': {}}
@@ -38,7 +39,7 @@ def food_index():
     resp['data']['banner_list'] = data_food_list
     return jsonify(resp)
 
-
+# 搜索餐品
 @route_api.route("/food/search")
 def food_search():
     resp = {'code': 200, 'msg': "操作成功", 'data': {}}
@@ -77,7 +78,7 @@ def food_search():
     resp['data']['has_more'] = 0 if len(data_food_list) < page_size else 1
     return jsonify(resp)
 
-
+# 获取餐品info
 @route_api.route("/food/info")
 def foodInfo():
     resp = {'code': 200, 'msg': "操作成功", 'data': {}}

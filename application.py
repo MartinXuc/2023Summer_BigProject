@@ -4,6 +4,7 @@ from flask_script import Manager
 from flask_sqlalchemy import SQLAlchemy
 
 
+# 对Flask类功能的补充
 class Application(Flask):
     def __init__(self, import_name, template_folder=None, root_path=None):
         super(Application, self).__init__(
@@ -12,16 +13,21 @@ class Application(Flask):
             root_path=root_path,
             static_folder=None
         )
+
+        # 选择 开发模式配置 or 上线模式配置 
         self.config.from_pyfile('config/base_setting.py')  # 从base_setting.py中加载基础配置
-        os.environ['ops_config'] = 'local'  # 设置环境变量ops_config为local
+        os.environ['ops_config'] = 'local'  # 设置环境变量ops_config为local [local or production]
         if 'ops_config' in os.environ:
             print('config/%s_setting.py' % os.environ['ops_config'])
             self.config.from_pyfile('config/%s_setting.py' % os.environ['ops_config'])  # 根据环境变量加载对应的配置文件
 
-        db.init_app(self)  # 初始化数据库
+        # 初始化数据库
+        db.init_app(self)  
 
 
 db = SQLAlchemy()  # 创建SQLAlchemy对象
+
+# __name__ 内置变量
 app = Application(__name__, template_folder=os.getcwd() + '/web/templates', root_path=os.getcwd())  # 创建Flask应用程序实例
 manager = Manager(app)  # 创建Flask-Script的Manager对象
 

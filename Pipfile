@@ -5,6 +5,15 @@ name = "pypi"
 
 [packages]
 flask = "*"
+flask-script = "*"
+flask-bootstrap = "*"
+flask-moment = "*"
+flask-wtf = "*"
+flask-sqlalchemy = "*"
+flask-sqlacodegen = "*"
+cymysql = "*"
+pymysql = "*"
+requests = "*"
 
 [dev-packages]
 

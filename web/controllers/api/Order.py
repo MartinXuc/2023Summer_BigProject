@@ -14,7 +14,7 @@ from common.models.pay.PayOrder import PayOrder
 from web.controllers.api import route_api
 from common.libs.pay.PayService import PayService
 
-
+# 查询订单
 @route_api.route("/order/info", methods=["POST"])
 def order_info():
     resp = {'code': 200, 'msg': '操作成功~', 'data': {}}
@@ -44,11 +44,11 @@ def order_info():
             }
             pay_price = pay_price + item.price * int(food_dic[item.id])
             data_food_list.append(tmp_data)
-    # 获取地址
+    # 收货地址
     default_address = {
-        "name": "编程浪子",
+        "name": "暴走的全家桶",
         "mobile": "17282728228",
-        "address": "上海虹桥"
+        "address": "上海宝山区上海大学新世纪"
     }
     resp['data']['food_list'] = data_food_list
     resp['data']['pay_price'] = str(pay_price)
@@ -57,7 +57,7 @@ def order_info():
     resp['data']['default_address'] = default_address
     return jsonify(resp)
 
-
+# 创建订单
 @route_api.route("/order/create", methods=['POST'])
 def order_create():
     resp = {'code': 200, 'msg': '操作成功~', 'data': {}}
@@ -85,7 +85,7 @@ def order_create():
         CartService.delete_item(member_info.id, items)
     return jsonify(resp)
 
-
+# 支付订单
 @route_api.route("/order/pay", methods=["POST"])
 def orderPay():
     resp = {'code': 200, 'msg': '操作成功~', 'data': {}}
@@ -131,7 +131,7 @@ def orderPay():
     resp['data']['pay_info'] = pay_info
     return jsonify(resp)
 
-
+# 订单结果
 @route_api.route("/order/callback", methods=["POST"])
 def orderCallback():
     result_data = {

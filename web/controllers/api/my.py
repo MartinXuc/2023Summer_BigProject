@@ -7,7 +7,7 @@ from common.models.pay.PayOrder import PayOrder
 from common.models.pay.PayOrderItem import PayOrderItem
 from web.controllers.api import route_api
 
-
+# 查询我的订单
 @route_api.route("/my/order")
 def myOrderLlist():
     resp = {'code': 200, 'msg': '操作成功~', 'data': {}}
