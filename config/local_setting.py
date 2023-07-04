@@ -1,4 +1,7 @@
 DEBUG = True
+
+
+
 # SQLALCHEMY_ECHO = True  # 打印sql语句
 SQLALCHEMY_DATABASE_URI = 'mysql+pymysql://root:341125@localhost:3306/order'
 SQLALCHEMY_TRACK_MODIFICATIONS = False
