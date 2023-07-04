@@ -19,7 +19,7 @@
 	border-radius: 50%;
 }
 
-.userinfo-nickname {
+.userinfo-name {
   margin-top: 20rpx;
   color: #FFF;
 }

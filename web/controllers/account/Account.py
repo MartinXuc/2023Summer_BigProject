@@ -20,7 +20,7 @@ def index():
 
     # 混合查询关键字‘mix_kw
     if 'mix_kw' in req:
-        rule = or_(User.nickname.ilike("%{0}%".format(req['mix_kw'])), User.mobile.ilike("%{0}%".format(req['mix_kw'])))
+        rule = or_(User.name.ilike("%{0}%".format(req['mix_kw'])), User.mobile.ilike("%{0}%".format(req['mix_kw'])))
         query = query.filter(rule)
 
     if 'status' in req and int(req['status']) > -1:
@@ -75,18 +75,18 @@ def set_():
         resp_data['user_info'] = user_info
         return ops_render("account/set.html", resp_data)
 
-    resp = {'code': 200, 'msg': '操作成功！', 'data': {}}
+    resp = {'code': 200, 'msg': 'success！', 'data': {}}
     req = request.values
 
     # 获取参数
     id = req['id'] if 'id' in req else 0
-    nickname = req['nickname'] if 'nickname' in req else ''
+    name = req['name'] if 'name' in req else ''
     mobile = req['mobile'] if 'mobile' in req else ''
     email = req['email'] if 'email' in req else ''
     login_name = req['login_name'] if 'login_name' in req else ''
     login_pwd = req['login_pwd'] if 'login_pwd' in req else ''
 
-    if nickname is None or len(nickname) < 1:
+    if name is None or len(name) < 1:
         resp['code'] = -1
         resp['msg'] = "请输入符合规范的姓名！"
         return jsonify(resp)
@@ -111,7 +111,7 @@ def set_():
         resp['msg'] = "请输入符合规范的登陆密码！"
         return jsonify(resp)
 
-    if nickname is None or len(nickname) < 1:
+    if name is None or len(name) < 1:
         resp['code'] = -1
         resp['msg'] = "请输入符合规范的姓名！"
         return jsonify(resp)
@@ -132,7 +132,7 @@ def set_():
         model_user.created_time = getCurrentDate()
         model_user.login_salt = UserService.gene_salt()
 
-    model_user.nickname = nickname
+    model_user.name = name
     model_user.mobile = mobile
     model_user.email = email
     model_user.login_name = login_name
@@ -147,7 +147,7 @@ def set_():
 
 @route_account.route("/ops", methods=["POST"])
 def ops():
-    resp = {'code': 200, 'msg': '操作成功!', 'data': {}}
+    resp = {'code': 200, 'msg': 'success!', 'data': {}}
     req = request.values
 
     id = req['id'] if 'id' in req else 0

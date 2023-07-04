@@ -11,8 +11,8 @@ var account_set_ops = {
                 return
             }
 
-            var nickname_target = $(".wrap_account_set input[name=nickname]");
-            var nickname = nickname_target.val();
+            var name_target = $(".wrap_account_set input[name=name]");
+            var name = name_target.val();
 
             var mobile_target = $(".wrap_account_set input[name=mobile]");
             var mobile = mobile_target.val();
@@ -26,8 +26,8 @@ var account_set_ops = {
             var login_pwd_target = $(".wrap_account_set input[name=login_pwd]");
             var login_pwd = login_pwd_target.val();
 
-            if (!nickname || nickname.length < 1) {
-                common_ops.tip("请输入符合规范的姓名！", nickname_target);
+            if (!name || name.length < 1) {
+                common_ops.tip("请输入符合规范的姓名！", name_target);
                 return
             }
 
@@ -54,7 +54,7 @@ var account_set_ops = {
             btn_target.addClass("disabled");
 
             var data = {
-                nickname: nickname,
+                name: name,
                 mobile: mobile,
                 email: email,
                 login_name: login_name,

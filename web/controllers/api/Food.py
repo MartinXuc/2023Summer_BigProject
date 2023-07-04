@@ -8,10 +8,10 @@ from common.models.member.MemberCart import MemberCart
 from web.controllers.api import route_api
 
 
-# 获取餐品list
+# 获取餐品 和 分类
 @route_api.route("/food/index")
 def food_index():
-    resp = {'code': 200, 'msg': "操作成功", 'data': {}}
+    resp = {'code': 200, 'msg': "success", 'data': {}}
     cat_list = FoodCat.query.filter_by(status=1).order_by(FoodCat.weight.desc()).all()
     data_cat_list = [{
         'id': 0,
@@ -21,19 +21,20 @@ def food_index():
         for item in cat_list:
             tmp_data = {
                 "id": item.id,
-                "name": item.name
+                "name": item.name,
             }
             data_cat_list.append(tmp_data)
     resp['data']['cat_list'] = data_cat_list
 
-    food_list = Food.query.filter_by(status=1) \
-        .order_by(Food.total_count.desc(), Food.id.desc()).limit(3).all()
+    food_list = Food.query.order_by(Food.total_count.desc(), Food.id.desc()).limit(3).all()
     data_food_list = []
     if food_list:
         for item in food_list:
             tmp_data = {
                 "id": item.id,
-                "pic_url": UrlManager.build_image_url(item.main_image)
+                "pic_url": UrlManager.build_image_url(item.main_image),
+                "price": item.price,
+                "status": item.status,
             }
             data_food_list.append(tmp_data)
     resp['data']['banner_list'] = data_food_list
@@ -42,7 +43,7 @@ def food_index():
 # 搜索餐品
 @route_api.route("/food/search")
 def food_search():
-    resp = {'code': 200, 'msg': "操作成功", 'data': {}}
+    resp = {'code': 200, 'msg': "success", 'data': {}}
     req = request.values
     cat_id = int(req['cat_id']) if 'cat_id' in req else 0
     mix_kw = str(req['mix_kw']) if 'mix_kw' in req else ''
@@ -81,7 +82,7 @@ def food_search():
 # 获取餐品info
 @route_api.route("/food/info")
 def foodInfo():
-    resp = {'code': 200, 'msg': "操作成功", 'data': {}}
+    resp = {'code': 200, 'msg': "success", 'data': {}}
     req = request.values
     id = int(req['id']) if 'id' in req else 0
     food_info = Food.query.filter_by(id=id).first()
@@ -106,3 +107,5 @@ def foodInfo():
     }
     resp['data']['cart_number'] = cart_number
     return jsonify(resp)
+
+

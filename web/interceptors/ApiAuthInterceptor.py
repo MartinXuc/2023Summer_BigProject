@@ -31,7 +31,7 @@ def before_request():
         return
 
     if not member_info:
-        resp = {'code': -1, 'msg': '未登录~', 'data': {}}
+        resp = {'code': -1, 'msg': '拦截器拦截', 'data': {}}
         return jsonify(resp)
     return
 

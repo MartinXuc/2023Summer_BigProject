@@ -10,7 +10,7 @@ from web.controllers.api import route_api
 # 查询我的订单
 @route_api.route("/my/order")
 def myOrderLlist():
-    resp = {'code': 200, 'msg': '操作成功~', 'data': {}}
+    resp = {'code': 200, 'msg': 'success~', 'data': {}}
     member_info = g.member_info
     req = request.values
 

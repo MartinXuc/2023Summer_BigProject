@@ -11,18 +11,18 @@ var member_set_ops = {
                 return;
             }
 
-            var nickname_taget = $('.wrap_member_set input[name=nickname]');
-            var nickname = nickname_taget.val();
+            var name_taget = $('.wrap_member_set input[name=name]');
+            var name = name_taget.val();
 
-            if (nickname.length < 1) {
-                common_ops.tip("请输入符合规范的姓名!", nickname_taget);
+            if (name.length < 1) {
+                common_ops.tip("请输入符合规范的姓名!", name_taget);
                 return;
             }
 
             btn_target.addClass('disabled');
 
             var data = {
-                nickname: nickname,
+                name: name,
                 id: $(".wrap_member_set input[name=id]").val()
             };
 

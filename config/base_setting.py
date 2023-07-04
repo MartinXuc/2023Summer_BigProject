@@ -13,7 +13,7 @@ IGNORE_CHECK_LOGIN_URLS = [
     "^/favicon.ico"
 ]
 API_IGNORE_URLS = [
-    '^/api'
+    # '^/api'
 ]
 
 PAGE_SIZE = 50

@@ -18,7 +18,7 @@ class PayService():
         pass
 
     def create_order(self, member_id, items=None, params=None):
-        resp = {'code': 200, 'msg': '操作成功', 'date': {}}
+        resp = {'code': 200, 'msg': 'success', 'date': {}}
 
         pay_price = decimal.Decimal(0.00)
         continue_cnt = 0

@@ -59,13 +59,13 @@ def edit():
     if request.method == "GET":
         return ops_render("user/edit.html", {"current": "edit"})
 
-    resp = {'code': 200, 'msg': "操作成功！", 'data': {}}
+    resp = {'code': 200, 'msg': "success！", 'data': {}}
 
     req = request.values
-    nickname = req['nickname'] if 'nickname' in req else ''
+    name = req['name'] if 'name' in req else ''
     email = req['email'] if 'email' in req else ''
 
-    if nickname is None or len(nickname) < 1:
+    if name is None or len(name) < 1:
         resp['code'] = -1
         resp['msg'] = '请输入符合规范的姓名！'
         return jsonify(resp)
@@ -76,7 +76,7 @@ def edit():
         return jsonify(resp)
 
     user_info = g.current_user
-    user_info.nickname = nickname
+    user_info.name = name
     user_info.email = email
 
     db.session.add(user_info)
@@ -90,7 +90,7 @@ def reset_pwd():
     if request.method == "GET":
         return ops_render("user/reset_pwd.html", {"current": "reset-pwd"})
 
-    resp = {'code': 200, 'msg': "操作成功！", 'data': {}}
+    resp = {'code': 200, 'msg': "success！", 'data': {}}
 
     req = request.values
     old_password = req['old_password'] if 'old_password' in req else ''

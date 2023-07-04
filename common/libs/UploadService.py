@@ -13,7 +13,7 @@ class UploadService():
     @staticmethod
     def upload_by_file(file):
         config_upload = app.config['UPLOAD']
-        resp = {'code': 200, 'msg': '操作成功', 'data': {}}
+        resp = {'code': 200, 'msg': 'success', 'data': {}}
         filename = secure_filename(file.filename)
         ext = filename.rsplit('.', 1)[1]
         if ext not in config_upload['ext']:

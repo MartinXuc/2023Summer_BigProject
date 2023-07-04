@@ -28,90 +28,105 @@ create table food{
 
 
 
-app_access_log
-
-``` sql
-create table app_access_log{
-
-}
-```
 
 
 
-app_error_log
+
+#### food
+
+food_cat	餐品类别 ->  FoodCat
 
 
 
-food_cat	餐品类别
+food_sale_change_log -> FoodSaleChangeLog
 
 
 
-food_sale_change_log
+food_stock_change_log -> FoodStockChangeLog
 
 
 
-food_stock_change_log
+food -> Food
 
 
 
-images
+#### log
+
+app_access_log -> AppAccessLog
 
 
 
-member 会员
+app_error_log -> AppErrorLog
 
 
+
+#### member
+
+member -> Member
+
+member_cart -> MemberCart
+
+oauth_member_bind -> OauthMemberBind
+
+
+
+#### pay
+
+oauth_access_token -> OauthAccessToken
+
+pay_order -> PayOrder
+
+pay_order_callback_data -> PayOrderCallbackData
+
+pay_order_item -> PayOrderItem
+
+
+
+#### image
+
+images -> Image
+
+
+
+#### user
+
+user -> User
+
+
+
+#### none
 
 member_address
 
-
-
-member_cart
-
-
-
 member_comments
-
-
-
-oauth_access_token
-
-
-
-oauth_member_bind
-
-
-
-pay_order
-
-
-
-pay_order_callback_data
-
-
-
-pay_order_item
-
-
 
 queue_list
 
-
-
 stat_daily_food
-
-
 
 stat_daily_member
 
-
-
 stat_daily_site
 
-
-
-user 管理员
-
-
-
 wx_share_history
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

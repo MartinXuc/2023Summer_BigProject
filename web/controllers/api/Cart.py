@@ -12,11 +12,11 @@ from web.controllers.api import route_api
 # 查询购物车
 @route_api.route('/cart/index')
 def cart_index():
-    resp = {'code': 200, 'msg': '操作成功', 'data': {}}
+    resp = {'code': 200, 'msg': 'success', 'data': {}}
     member_info = g.member_info
     if not member_info:
         resp['code'] = -1
-        resp['msg'] = "未登录"
+        resp['msg'] = "cart/index"
         return jsonify(resp)
     cart_list = MemberCart.query.filter_by(member_id=member_info.id).all()
     data_cart_list = []
@@ -43,7 +43,7 @@ def cart_index():
 # 添加餐品
 @route_api.route("/cart/set", methods=["POST"])
 def set_cart():
-    resp = {'code': 200, 'msg': '操作成功', 'data': {}}
+    resp = {'code': 200, 'msg': 'success', 'data': {}}
     req = request.values
     food_id = int(req['id']) if 'id' in req else 0
     number = int(req['number']) if 'number' in req else 0
@@ -76,7 +76,7 @@ def set_cart():
 
 @route_api.route("/cart/del", methods=["POST"])
 def del_cart():
-    resp = {'code': 200, 'msg': '操作成功', 'data': {}}
+    resp = {'code': 200, 'msg': 'success', 'data': {}}
     req = request.values
     params_goods = req['goods'] if 'goods' in req else None
 

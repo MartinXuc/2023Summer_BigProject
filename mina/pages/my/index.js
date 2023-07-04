@@ -9,7 +9,7 @@ Page({
         let that = this;
         that.setData({
             user_info: {
-                nickname: "你的名字",
+                name: "你的名字",
                 avatar_url: "/images/more/logo.png"
             },
         })

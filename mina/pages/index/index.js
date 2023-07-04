@@ -1,12 +1,11 @@
-//login.js
-//获取应用实例
 var app = getApp();
+
 Page({
     data: {
         remind: '加载中',
         angle: 0,
         userInfo: {},
-        regFlag: true
+        regFlag: false,
     },
     goToIndex: function () {
         wx.switchTab({
@@ -72,14 +71,17 @@ Page({
     },
     login: function (e) {
         var that = this;
+        console.log("debug");
+
         if (!e.detail.userInfo) {
             app.alert({'content': '登陆失败，请再次点击！'});
             return;
         }
-
+        console.log("debug2");
         var data = e.detail.userInfo;
         wx.login({
             success: function (res) {
+                console.log("debug3");
                 if (!res.code) {
                     app.alert({'content': '登陆失败，请再次点击！'});
                     return;
@@ -99,6 +101,9 @@ Page({
                         that.goToIndex()
                     }
                 });
+            },
+            fail: function(res){
+              console.log("fail");
             }
         });
 
