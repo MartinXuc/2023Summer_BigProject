@@ -19,7 +19,7 @@ def food_index():
 
     if cat_list:
         for item in cat_list:
-            data[item.id] = {'tag': item.name, 'foodlist': []}
+            data[item.id] = {'tag': item.name, 'classfy_list': []}
             
 
     if food_list:
@@ -31,7 +31,7 @@ def food_index():
                 "price": item.price,
                 "status": item.status,
             }
-            data[item.cat_id]['foodlist'].append(tmp_data) 
+            data[item.cat_id]['classfy_list'].append(tmp_data) 
 
     resp['data'] = data
     return jsonify(resp)
