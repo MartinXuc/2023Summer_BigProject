@@ -26,6 +26,7 @@ def food_index():
         for item in food_list:
             tmp_data = {
                 "id": item.id,
+                "name": item.name,
                 "tag_id": item.cat_id,
                 "img_url": UrlManager.build_image_url(item.main_image),
                 "price": item.price,
