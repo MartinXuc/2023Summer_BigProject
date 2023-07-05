@@ -19,7 +19,7 @@ def food_index():
 
     if cat_list:
         for item in cat_list:
-            cat_dic.append(item.id, item.name)
+            cat_dic[item.id] = item.name
 
     data_list = []
     if food_list:
