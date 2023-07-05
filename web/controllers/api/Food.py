@@ -11,17 +11,17 @@ from web.controllers.api import route_api
 # 获取餐品 和 分类
 @route_api.route("/food/index")
 def food_index():
-    resp = {'code': 200, 'msg': "success", 'data': []}
+    resp = {'code': 200, 'msg': "success", 'data': {}}
     cat_list = FoodCat.query.filter_by(status=1).order_by(FoodCat.weight.desc()).all()
-    food_list = Food.query.order_by(Food.total_count.desc(), Food.id.desc()).limit(3).all()
+    food_list = Food.query.order_by(Food.total_count.desc(), Food.id.desc()).limit(10).all()
 
-    cat_dic = {}
+    data = {}
 
     if cat_list:
         for item in cat_list:
-            cat_dic[item.id] = item.name
+            data[item.id] = {'tag': item.name, 'foodlist': []}
+            
 
-    data_list = []
     if food_list:
         for item in food_list:
             tmp_data = {
@@ -31,10 +31,9 @@ def food_index():
                 "price": item.price,
                 "status": item.status,
             }
-            tmp_data["tag"] = cat_dic[tmp_data['tag_id']]
-            data_list.append(tmp_data)
+            data[item.cat_id]['list'].append(tmp_data) 
 
-    resp['data'] = data_list
+    resp['data'] = data
     return jsonify(resp)
 
 # 搜索餐品
