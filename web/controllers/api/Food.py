@@ -11,33 +11,30 @@ from web.controllers.api import route_api
 # 获取餐品 和 分类
 @route_api.route("/food/index")
 def food_index():
-    resp = {'code': 200, 'msg': "success", 'data': {}}
+    resp = {'code': 200, 'msg': "success", 'data': []}
     cat_list = FoodCat.query.filter_by(status=1).order_by(FoodCat.weight.desc()).all()
-    data_cat_list = [{
-        'id': 0,
-        'name': "全部"
-    }]
+    food_list = Food.query.order_by(Food.total_count.desc(), Food.id.desc()).limit(3).all()
+
+    cat_dic = {}
+
     if cat_list:
         for item in cat_list:
-            tmp_data = {
-                "id": item.id,
-                "name": item.name,
-            }
-            data_cat_list.append(tmp_data)
-    resp['data']['cat_list'] = data_cat_list
+            cat_dic.append(item.id, item.name)
 
-    food_list = Food.query.order_by(Food.total_count.desc(), Food.id.desc()).limit(3).all()
-    data_food_list = []
+    data_list = []
     if food_list:
         for item in food_list:
             tmp_data = {
                 "id": item.id,
-                "pic_url": UrlManager.build_image_url(item.main_image),
+                "tag_id": item.cat_id,
+                "img_url": UrlManager.build_image_url(item.main_image),
                 "price": item.price,
                 "status": item.status,
             }
-            data_food_list.append(tmp_data)
-    resp['data']['food_list'] = data_food_list
+            tmp_data["tag"] = cat_dic[tmp_data['tag_id']]
+            data_list.append(tmp_data)
+
+    resp['data'] = data_list
     return jsonify(resp)
 
 # 搜索餐品
