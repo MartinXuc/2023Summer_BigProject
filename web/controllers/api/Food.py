@@ -31,7 +31,7 @@ def food_index():
                 "price": item.price,
                 "status": item.status,
             }
-            data[item.cat_id]['list'].append(tmp_data) 
+            data[item.cat_id]['foodlist'].append(tmp_data) 
 
     resp['data'] = data
     return jsonify(resp)
