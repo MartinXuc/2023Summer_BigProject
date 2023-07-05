@@ -37,7 +37,7 @@ def food_index():
                 "status": item.status,
             }
             data_food_list.append(tmp_data)
-    resp['data']['banner_list'] = data_food_list
+    resp['data']['food_list'] = data_food_list
     return jsonify(resp)
 
 # 搜索餐品
