@@ -17,7 +17,7 @@ from common.libs.pay.PayService import PayService
 # 查询订单
 @route_api.route("/order/info", methods=["POST"])
 def order_info():
-    resp = {'code': 200, 'msg': 'success~', 'data': {}}
+    resp = {'code': 200, 'msg': 'success', 'data': {}}
     req = request.values
     params_goods = req['goods'] if 'goods' in req else None
     member_info = g.member_info
@@ -60,6 +60,9 @@ def order_info():
 # 创建订单
 @route_api.route("/order/create", methods=['POST'])
 def order_create():
+    '''
+        创建订单
+    '''
     resp = {'code': 200, 'msg': 'success~', 'data': {}}
     req = request.values
     type = req['type'] if 'type' in req else ''
@@ -74,7 +77,7 @@ def order_create():
 
     if len(items) < 1:
         resp['code'] = -1
-        resp['msg'] = '下单失败：没有选择商品~~'
+        resp['msg'] = '未选择商品'
         return jsonify(resp)
     member_info = g.member_info
 

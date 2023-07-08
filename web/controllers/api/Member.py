@@ -3,7 +3,7 @@ from flask import request, jsonify, g
 import sys
 
 from application import app, db
-from common.libs.Helper import getCurrentDate
+from common.libs.Helper import getCurrentDate, std_resp
 from common.libs.member.MemberService import MemberService
 from common.models.food.WxShareHistory import WxShareHistory
 from common.models.member.Member import Member
@@ -12,22 +12,18 @@ from web.controllers.api import route_api
 
 
 # 登录即注册
-@route_api.route("member/login", methods=['GET', 'POST'])
+@route_api.route("member/login", methods=['POST'])
 def login():
-    resp = {'code': 200, 'msg': 'success', 'data': {}}
+    resp = std_resp()
     req = request.values
-    code = req['code'] if 'code' in req else ''
-    if not code or len(code) < 1:
-        resp['code'] = -1
-        resp['msg'] = "member/login"
-        return jsonify(resp)
-
     
-    # openid = MemberService.getWeChatOpenId(code)
-    # if openid is None:
-    #     resp['code'] = -1
-    #     resp['msg'] = "调用微信出错"
-    #     return jsonify(resp)
+    code = req['code'] if req['code'] is not None else None
+    
+    openid = MemberService.getWeChatOpenId(code)
+    if openid is None:
+        resp['code'] = -1
+        resp['msg'] = "调用微信出错"
+        return jsonify(resp)
 
     member_id = MemberService.create_new_member(req)
     token = MemberService.get_member_token(member_id)

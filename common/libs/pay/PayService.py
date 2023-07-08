@@ -101,7 +101,11 @@ class PayService():
 
         return resp
 
+
     def geneOrderSn(self):
+        '''
+            生成订单号
+        '''
         m = hashlib.md5()
         sn = None
         while True:

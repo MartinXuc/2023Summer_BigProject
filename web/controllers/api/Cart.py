@@ -2,7 +2,7 @@ import json
 
 from flask import jsonify, request, g
 
-from common.libs.Helper import select_filter_obj, get_dict_filter_field
+from common.libs.Helper import select_filter_obj, get_dict_filter_field, std_resp
 from common.libs.UrlManager import UrlManager
 from common.libs.member.CartService import CartService
 from common.models.food.food import Food
@@ -12,7 +12,7 @@ from web.controllers.api import route_api
 # 查询购物车
 @route_api.route('/cart/index')
 def cart_index():
-    resp = {'code': 200, 'msg': 'success', 'data': {}}
+    resp = std_resp()
     member_info = g.member_info
     if not member_info:
         resp['code'] = -1

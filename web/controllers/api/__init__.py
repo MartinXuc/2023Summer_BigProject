@@ -6,6 +6,7 @@ from web.controllers.api.Food import *
 from web.controllers.api.Cart import *
 from web.controllers.api.Order import *
 from web.controllers.api.my import *
+from web.controllers.api.home import *
 
 
 @route_api.route('/')

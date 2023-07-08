@@ -28,9 +28,15 @@ class MemberService:
 
     @staticmethod
     def getWeChatOpenId(code):
+        if code is None:
+            return None
         url = 'https://api.weixin.qq.com/sns/jscode2session?appid={0}&secret={1}&js_code={2}&grant_type=authorization_code'.format(
-            app.config['MINA_APP']['appid'], app.config['MINA_APP']['appkey'], code)
+            app.config['MINA_APP']['app_id'], app.config['MINA_APP']['app_secret'], code)
+        
+        
         res = requests.get(url).json()
+
+        
         openid = None
         if 'openid' in res:
             openid = res['openid']
@@ -46,31 +52,36 @@ class MemberService:
 
         # 判断是否已经测试过，注册了直接返回一些信息
         bind_info = OauthMemberBind.query.filter_by(openid=openid, type=1).first()
+        id = None
+        if bind_info:
+            id = bind_info.member_id
 
-        if not bind_info:
+        else:
             # 创建新用户
-            model_member = Member()
-            model_member.name = name
-            model_member.sex = sex
-            model_member.avatar = avatar
-            model_member.salt = MemberService.gene_salt()
-            model_member.updated_time = model_member.created_time = getCurrentDate()
-            db.session.add(model_member)
+            member = Member()
+            member.name = name
+            member.sex = sex
+            member.avatar = avatar
+            member.salt = MemberService.gene_salt()
+            member.updated_time = member.created_time = getCurrentDate()
+            db.session.add(member)
             db.session.commit()
             # 创建认证用户
-            model_bind = OauthMemberBind()
-            model_bind.member_id = model_member.id
-            model_bind.type = 1
-            model_bind.openid = openid
-            model_bind.extra = ''
-            model_bind.updated_time = model_bind.created_time = getCurrentDate()
-            db.session.add(model_bind)
+            member_bind = OauthMemberBind()
+            member_bind.member_id = member.id
+            member_bind.type = 1
+            member_bind.openid = openid
+            member_bind.extra = ''
+            member_bind.updated_time = member_bind.created_time = getCurrentDate()
+            db.session.add(member_bind)
             db.session.commit()
+            id = member.id
 
-        return model_member.id
+        return id
 
     @staticmethod
     def get_member_token(member_id):
         member_info = Member.query.filter_by(id=member_id).first()
         token = "%s#%s" % (MemberService.gene_auth_code(member_info), member_info.id)
         return token
+

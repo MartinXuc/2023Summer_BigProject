@@ -9,8 +9,7 @@ route_static = Blueprint('static',__name__)
 def static(filename):
     print(filename)
     return send_from_directory(app.root_path + '/web/statics/',filename)
-#1.1.2、www.py 路由文件
-# _*_ coding:utf-8 _*_
+
 from application import app
  
 # 引用路由文件

@@ -16,7 +16,7 @@ create table user{
 
 **food**
 
-``` 
+``` sql
 create table food{
 	name
 	price
@@ -51,6 +51,7 @@ food -> Food
 
 
 #### log
+登录记录表
 
 app_access_log -> AppAccessLog
 
@@ -61,9 +62,9 @@ app_error_log -> AppErrorLog
 
 
 #### member
-
+用户表
 member -> Member
-
+用户购物车表
 member_cart -> MemberCart
 
 oauth_member_bind -> OauthMemberBind

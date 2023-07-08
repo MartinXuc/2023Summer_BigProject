@@ -16,6 +16,7 @@ class Application(Flask):
 
         # 选择 开发模式配置 or 上线模式配置 
         self.config.from_pyfile('config/base_setting.py')  # 从base_setting.py中加载基础配置
+        self.config.from_pyfile('config/resource_setting.py')
         os.environ['ops_config'] = 'local'  # 设置环境变量ops_config为local [local or production]
         if 'ops_config' in os.environ:
             print('config/%s_setting.py' % os.environ['ops_config'])
