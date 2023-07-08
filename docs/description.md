@@ -18,6 +18,10 @@
 
 
 
+**pay/wechatservice.py**
+
+封装微信接口功能
+
 
 
 #### config
