@@ -1,6 +1,6 @@
 from flask import g, jsonify, request
 
-from common.libs.Helper import select_filter_obj, get_dict_filter_field
+from common.libs.Helper import select_filter_obj, get_dict_filter_field, std_resp
 from common.libs.UrlManager import UrlManager
 from common.models.food.food import Food
 from common.models.pay.PayOrder import PayOrder
@@ -10,7 +10,7 @@ from web.controllers.api import route_api
 # 查询我的订单
 @route_api.route("/my/order")
 def myOrderLlist():
-    resp = {'code': 200, 'msg': 'success~', 'data': {}}
+    resp = std_resp()
     member_info = g.member_info
     req = request.values
 

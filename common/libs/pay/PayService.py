@@ -4,7 +4,7 @@ from random import randint
 from time import time
 
 from application import db
-from common.libs.Helper import getCurrentDate
+from common.libs.Helper import getCurrentDate, std_resp
 from common.libs.food.FoodService import FoodService
 from common.models.food.food import Food
 from common.models.food.food_sale_change_log import FoodSaleChangeLog
@@ -18,7 +18,10 @@ class PayService():
         pass
 
     def create_order(self, member_id, items=None, params=None):
-        resp = {'code': 200, 'msg': 'success', 'date': {}}
+        '''
+            创建订单, 未支付
+        '''
+        resp = std_resp()
 
         pay_price = decimal.Decimal(0.00)
         continue_cnt = 0
@@ -93,10 +96,8 @@ class PayService():
 
         except Exception as e:
             db.session.rollback()
-            print(e)
             resp['code'] = -1
-            resp['msg'] = "下单失败请重新下单"
-            resp['msg'] = str(e)
+            resp['msg'] = "创建订单失败"
             return resp
 
         return resp

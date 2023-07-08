@@ -1,6 +1,7 @@
 from flask import jsonify, request, g
 from sqlalchemy import or_
 
+from common.libs.Helper import std_resp
 from common.libs.UrlManager import UrlManager
 from common.models.food.food import Food
 from common.models.food.food_cat import FoodCat
@@ -11,28 +12,31 @@ from web.controllers.api import route_api
 # 获取餐品 和 分类
 @route_api.route("/food/index")
 def food_index():
-    resp = {'code': 200, 'msg': "success", 'data': {}}
+    resp = std_resp()
     cat_list = FoodCat.query.filter_by(status=1).order_by(FoodCat.weight.desc()).all()
     food_list = Food.query.order_by(Food.total_count.desc(), Food.id.desc()).limit(10).all()
 
+    if not cat_list or not food_list:
+        resp['msg'] = 'empty result' 
+        return jsonify(resp)
+
     data = {}
 
-    if cat_list:
-        for item in cat_list:
-            data[item.id] = {'tag': item.name, 'classfy_list': []}
-            
+    
+    for item in cat_list:
+        data[item.id] = {'tag': item.name, 'classfy_list': []}
 
-    if food_list:
-        for item in food_list:
-            tmp_data = {
-                "id": item.id,
-                "name": item.name,
-                "tag_id": item.cat_id,
-                "img_url": UrlManager.build_image_url(item.main_image),
-                "price": item.price,
-                "status": item.status,
-            }
-            data[item.cat_id]['classfy_list'].append(tmp_data) 
+    
+    for item in food_list:
+        tmp_data = {
+            "id": item.id,
+            "name": item.name,
+            "tag_id": item.cat_id,
+            "img_url": UrlManager.build_image_url(item.main_image),
+            "price": item.price,
+            "status": item.status,
+        }
+        data[item.cat_id]['classfy_list'].append(tmp_data) 
 
     resp['data'] = data
     return jsonify(resp)

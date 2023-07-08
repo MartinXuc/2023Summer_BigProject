@@ -4,6 +4,7 @@ import json
 from flask import request, g, jsonify
 
 from application import app, db
+from common.libs.Helper import std_resp
 from common.libs.UrlManager import UrlManager
 from common.libs.member.CartService import CartService
 from common.libs.pay.PayService import PayService
@@ -14,47 +15,49 @@ from common.models.pay.PayOrder import PayOrder
 from web.controllers.api import route_api
 from common.libs.pay.PayService import PayService
 
-# 查询订单
+# 提交订单信息
 @route_api.route("/order/info", methods=["POST"])
 def order_info():
-    resp = {'code': 200, 'msg': 'success', 'data': {}}
+    '''
+        计算订餐的总费用
+    '''
+    resp = std_resp()
     req = request.values
-    params_goods = req['goods'] if 'goods' in req else None
+
+    if 'good' not in req:
+        resp['code'] = -1
+        resp['msg'] = 'empty request'
+        return jsonify(resp)
+    
+    params_goods_list = json.loads(req['goods'])
+    
     member_info = g.member_info
-    params_goods_list = []
-    if params_goods:
-        params_goods_list = json.loads(params_goods)
-
-    food_dic = {}
-    for item in params_goods_list:
-        food_dic[item['id']] = item['number']
-
-    food_ids = food_dic.keys()
-    food_list = Food.query.filter(Food.id.in_(food_ids)).all()
+    
+    food_dic = {item['id']:item['number'] for item in params_goods_list}
+    food_list = Food.query.filter(Food.id.in_(food_dic.keys())).all()
+    if not food_list:
+        resp['code'] = -1
+        resp['msg'] = 'error param'
+        return jsonify(resp)
+     
     data_food_list = []
     yun_price = pay_price = decimal.Decimal(0.00)
-    if food_list:
-        for item in food_list:
-            tmp_data = {
-                'id': item.id,
-                'name': item.name,
-                'price': str(item.price),
-                'pic_url': UrlManager.build_image_url(item.main_image),
-                'number': food_dic[item.id]
-            }
-            pay_price = pay_price + item.price * int(food_dic[item.id])
-            data_food_list.append(tmp_data)
-    # 收货地址
-    default_address = {
-        "name": "暴走的全家桶",
-        "mobile": "17282728228",
-        "address": "上海宝山区上海大学新世纪"
-    }
+
+    for item in food_list:
+        tmp_data = {
+            'id': item.id,
+            'name': item.name,
+            'price': str(item.price),
+            'pic_url': UrlManager.build_image_url(item.main_image),
+            'number': food_dic[item.id]
+        }
+        pay_price = pay_price + item.price * int(food_dic[item.id])
+        data_food_list.append(tmp_data)
+
     resp['data']['food_list'] = data_food_list
     resp['data']['pay_price'] = str(pay_price)
     resp['data']['yun_price'] = str(yun_price)
     resp['data']['total_price'] = str(pay_price + yun_price)
-    resp['data']['default_address'] = default_address
     return jsonify(resp)
 
 # 创建订单
@@ -63,7 +66,7 @@ def order_create():
     '''
         创建订单
     '''
-    resp = {'code': 200, 'msg': 'success~', 'data': {}}
+    resp = {'code': 200, 'msg': 'success', 'data': {}}
     req = request.values
     type = req['type'] if 'type' in req else ''
     note = req['note'] if 'note' in req else ''
@@ -91,20 +94,20 @@ def order_create():
 # 支付订单
 @route_api.route("/order/pay", methods=["POST"])
 def orderPay():
-    resp = {'code': 200, 'msg': 'success~', 'data': {}}
+    resp = std_resp()
     member_info = g.member_info
     req = request.values
     order_sn = req['order_sn'] if 'order_sn' in req else ''
     pay_order_info = PayOrder.query.filter_by(order_sn=order_sn, member_id=member_info.id).first()
     if not pay_order_info:
         resp['code'] = -1
-        resp['msg'] = "系统繁忙。请稍后再试~~"
+        resp['msg'] = "系统繁忙。请稍后再试"
         return jsonify(resp)
 
     oauth_bind_info = OauthMemberBind.query.filter_by(member_id=member_info.id).first()
     if not oauth_bind_info:
         resp['code'] = -1
-        resp['msg'] = "系统繁忙。请稍后再试~~"
+        resp['msg'] = "系统繁忙。请稍后再试"
         return jsonify(resp)
 
     config_mina = app.config['MINA_APP']
