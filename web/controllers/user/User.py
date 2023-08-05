@@ -23,23 +23,23 @@ def login():
 
     if login_name is None or len(login_name) < 1:
         resp['code'] = -1
-        resp['msg'] = "请输入正确的用户名！"
+        resp['msg'] = "Wrong user format!"
         return jsonify(resp)
 
     if login_pwd is None or len(login_pwd) < 1:
         resp['code'] = -1
-        resp['msg'] = "请输入正确的密码！"
+        resp['msg'] = "error"
         return jsonify(resp)
 
     user_info = User.query.filter_by(login_name=login_name).first()
     if not user_info:
         resp['code'] = -1
-        resp['msg'] = "请输入正确的用户名和密码！"
+        resp['msg'] = "user doesn't exist!"
         return jsonify(resp)
 
     if user_info.login_pwd != UserService.gene_pwd(login_pwd, user_info.login_salt):
         resp['code'] = -1
-        resp['msg'] = "请输入正确的用户名和密码！"
+        resp['msg'] = "error"
         return jsonify(resp)
 
     if user_info.status != 1:

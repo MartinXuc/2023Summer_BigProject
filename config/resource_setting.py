@@ -1,13 +1,15 @@
 RESOURCES = ['home_res']
 
 HOME_RES = {
-    'avartar': 'avartar.jpg',
-    'icon-QRcode': 'icon-QRcode.png',
-    'icon-Package': 'icon-package.png',
-    'icon-Order': 'icon-order.png',
     'arrow-right': 'icon-arrow-right.png',
     'drink': 'drink.png',
     'tableware': 'tableware.png',
     'poster': 'poster.jpg',
     'store': 'store.png',
 }
+
+MENU_SWIPERS = [
+    'menu-poster1.jpg',
+    'menu-poster2.jpg',
+    'menu-poster3.jpg'
+]

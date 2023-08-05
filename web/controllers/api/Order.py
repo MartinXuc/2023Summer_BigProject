@@ -24,12 +24,12 @@ def order_info():
     resp = std_resp()
     req = request.values
 
-    if 'good' not in req:
+    if 'goods' not in req:
         resp['code'] = -1
         resp['msg'] = 'empty request'
         return jsonify(resp)
     
-    params_goods_list = json.loads(req['goods'])
+    params_goods_list = json.loads(req['Order'])
     
     member_info = g.member_info
     
@@ -56,7 +56,7 @@ def order_info():
 
     resp['data']['food_list'] = data_food_list
     resp['data']['pay_price'] = str(pay_price)
-    resp['data']['yun_price'] = str(yun_price)
+    
     resp['data']['total_price'] = str(pay_price + yun_price)
     return jsonify(resp)
 
@@ -66,27 +66,34 @@ def order_create():
     '''
         创建订单
     '''
-    resp = {'code': 200, 'msg': 'success', 'data': {}}
+    resp = std_resp()
     req = request.values
+    
     type = req['type'] if 'type' in req else ''
     note = req['note'] if 'note' in req else ''
     express_address_id = int(req['express_address_id']) if 'express_address_id' in req and req[
         'express_address_id'] else 0
+    
     params_goods = req['goods'] if 'goods' in req else None
 
-    items = []
-    if params_goods:
-        items = json.loads(params_goods)
+    if params_goods is None:
+        resp['code'] = -1
+        resp['msg'] = 'error'
+        return jsonify(resp)
+    
+    items = json.loads(params_goods)
+    items = items['order']
 
     if len(items) < 1:
         resp['code'] = -1
         resp['msg'] = '未选择商品'
         return jsonify(resp)
     member_info = g.member_info
-
+    
     target = PayService()
     params = {}
     resp = target.create_order(member_info.id, items, params)
+    
     if resp['code'] == 200 and type == "cart":
         CartService.delete_item(member_info.id, items)
     return jsonify(resp)

@@ -1,7 +1,7 @@
 import requests
 from flask import request, jsonify, g
 import sys
-
+import json
 from application import app, db
 from common.libs.Helper import getCurrentDate, std_resp
 from common.libs.member.MemberService import MemberService
@@ -63,6 +63,20 @@ def checkReg():
     resp['data'] = {'token': token}
     return jsonify(resp)
 
+@route_api.route("member/check-login")
+def check_login():
+    resp = std_resp()
+    member_info = g.member_info
+    if member_info is None:
+        resp['msg'] = 'None'
+        return jsonify(resp)
+    
+    member = {
+            'id' : member_info.id,
+            'name' : member_info.name,
+        }
+    resp['data']['member_info'] = member
+    return jsonify(resp) 
 
 # 提交分享内容
 @route_api.route("/member/share", methods=['POST'])

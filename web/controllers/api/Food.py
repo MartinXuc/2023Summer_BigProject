@@ -1,6 +1,7 @@
 from flask import jsonify, request, g
 from sqlalchemy import or_
 
+from application import app
 from common.libs.Helper import std_resp
 from common.libs.UrlManager import UrlManager
 from common.models.food.food import Food
@@ -14,7 +15,7 @@ from web.controllers.api import route_api
 def food_index():
     resp = std_resp()
     cat_list = FoodCat.query.filter_by(status=1).order_by(FoodCat.weight.desc()).all()
-    food_list = Food.query.order_by(Food.total_count.desc(), Food.id.desc()).limit(10).all()
+    food_list = Food.query.order_by(Food.total_count.desc(), Food.id.desc()).limit(50).all()
 
     if not cat_list or not food_list:
         resp['msg'] = 'empty result' 
@@ -109,4 +110,9 @@ def foodInfo():
     resp['data']['cart_number'] = cart_number
     return jsonify(resp)
 
-
+# 获取swipers
+@route_api.route("/menu/swipers")
+def swipers():
+    resp = std_resp()
+    resp['data']['swipers'] = app.config['MENU_SWIPERS']
+    return jsonify(resp)

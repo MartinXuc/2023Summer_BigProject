@@ -12,7 +12,8 @@ from common.models.pay.PayOrder import PayOrder
 from common.models.pay.PayOrderItem import PayOrderItem
 from common.models.pay.PayOrderCallbackData import PayOrderCallbackData
 
-
+import traceback
+    
 class PayService():
     def __init__(self):
         pass
@@ -26,7 +27,8 @@ class PayService():
         pay_price = decimal.Decimal(0.00)
         continue_cnt = 0
         foods_id = []
-        for item in items:
+        for key in items:
+            item = items[key]
             if decimal.Decimal(item['price']) < 0:
                 continue_cnt += 1
                 continue
@@ -36,14 +38,16 @@ class PayService():
             resp['code'] = -1
             resp['msg'] = '商品items为空'
             return resp
-        yun_price = params['yun_price'] if params and 'yun_price' in params else 0
+        yun_price = 0
         note = params['note'] if params and 'note' in params else ''
         yun_price = decimal.Decimal(yun_price)
         total_price = pay_price + yun_price
+
         try:
             tmp_food_list = db.session.query(Food).filter(Food.id.in_(foods_id)) \
                 .with_for_update().all()
 
+            
             tmp_food_stock_mapping = {}
             for tmp_item in tmp_food_list:
                 tmp_food_stock_mapping[tmp_item.id] = tmp_item.stock
@@ -62,7 +66,8 @@ class PayService():
 
                 db.session.add(model_pay_order)
 
-                for item in items:
+                for key in items:
+                    item = items[key]
                     tmp_left_stock = tmp_food_stock_mapping[item['id']]
                     if decimal.Decimal(item['price']) < 0:
                         continue
@@ -98,6 +103,7 @@ class PayService():
             db.session.rollback()
             resp['code'] = -1
             resp['msg'] = "创建订单失败"
+            resp['debug'] = traceback.format_exc()
             return resp
 
         return resp

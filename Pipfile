@@ -14,6 +14,9 @@ flask-sqlacodegen = "*"
 cymysql = "*"
 pymysql = "*"
 requests = "*"
+python-barcode = "*"
+pillow = "*"
+qrcode = "*"
 
 [dev-packages]
 
