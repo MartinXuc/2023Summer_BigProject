@@ -12,7 +12,7 @@ from common.libs.UrlManager import UrlManager
 from web.controllers.api import route_api
 
 # 获取游客优惠券
-@route_api.route("/package")
+@route_api.route("/package", methods=['POST'])
 def get_user_package():
     resp = std_resp()
     res = request.values
@@ -33,10 +33,12 @@ def get_user_package():
         data[index] = {
             'food_id': food.id, 
             'food_name': food.name,
-            'imgUrl': food.main_image,
+            'imgUrl': UrlManager.build_image_url(food.main_image),
             'price': food.price,
             'discount': package.discount,
             'sale_price': food.price - package.discount,
+            'start_date': item.effective_date.strftime("%Y/%m/%d"),
+            'validity': item.valid_period,
         }
         index += 1
     resp['data'] = data

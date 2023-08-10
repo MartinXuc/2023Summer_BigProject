@@ -8,28 +8,28 @@ from common.models.pay.PayOrderItem import PayOrderItem
 from web.controllers.api import route_api
 
 # 查询我的订单
-@route_api.route("/my/order")
+@route_api.route("/my/order",  methods=["POST"])
 def myOrderLlist():
     resp = std_resp()
     member_info = g.member_info
     req = request.values
 
-    status = int(req['status']) if 'status' in req else 0
+    # status = int(req['status']) if 'status' in req else 0
 
     query = PayOrder.query.filter_by(member_id=member_info.id)
 
-    if status == -8:  # 等待付款
-        query = query.filter(PayOrder.status == -8)
-    elif status == -7:  # 代发货
-        query = query.filter(PayOrder.status == 1, PayOrder.express_status == -7, PayOrder.comment_status == 0)
-    elif status == -6:  # 待确认
-        query = query.filter(PayOrder.status == 1, PayOrder.express_status == -6, PayOrder.comment_status == 0)
-    elif status == -5:  # 待评价
-        query = query.filter(PayOrder.status == 1, PayOrder.express_status == 1, PayOrder.comment_status == 0)
-    elif status == -1:  # 已完成
-        query = query.filter(PayOrder.status == 1, PayOrder.express_status == -1, PayOrder.comment_status == 1)
-    else:
-        query = query.filter(PayOrder.status == 0)
+    # if status == -8:  # 等待付款
+    #     query = query.filter(PayOrder.status == -8)
+    # elif status == -7:  # 代发货
+    #     query = query.filter(PayOrder.status == 1, PayOrder.express_status == -7, PayOrder.comment_status == 0)
+    # elif status == -6:  # 待确认
+    #     query = query.filter(PayOrder.status == 1, PayOrder.express_status == -6, PayOrder.comment_status == 0)
+    # elif status == -5:  # 待评价
+    #     query = query.filter(PayOrder.status == 1, PayOrder.express_status == 1, PayOrder.comment_status == 0)
+    # elif status == -1:  # 已完成
+    #     query = query.filter(PayOrder.status == 1, PayOrder.express_status == -1, PayOrder.comment_status == 1)
+    # else:
+    #     query = query.filter(PayOrder.status == 0)
 
     pay_order_list = query.order_by(PayOrder.id.desc()).all()
     data_pay_order_list = []
