@@ -8,7 +8,7 @@
 
 
 
-#### common/model
+#### common/models
 
 数据库模型
 
