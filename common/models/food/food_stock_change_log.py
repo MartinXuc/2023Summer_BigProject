@@ -5,7 +5,7 @@ from flask_sqlalchemy import SQLAlchemy
 
 from ..db import db
 
-from application import app
+
 
 
 class FoodStockChangeLog(db.Model):

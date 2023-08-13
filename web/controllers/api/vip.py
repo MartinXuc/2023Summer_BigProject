@@ -34,9 +34,9 @@ def getBarcode():
     code = vip_id + t
     
     vip_barcode = barcode.get('ean13', code, writer=barcode.writer.ImageWriter())
-    vip_barcode.save('./barcode/' + 'Barcode' + code)
+    vip_barcode.save('./output/barcode/' + 'Barcode' + code)
     
-    return send_from_directory('./barcode/', 'Barcode' + code + '.png')
+    return send_from_directory('./output/barcode/', 'Barcode' + code + '.png')
 
 
 # QRcode
@@ -59,6 +59,6 @@ def getQRcode():
     code = vip_id + t
 
     vip_qrcode = qrcode.make()
-    with open('./barcode/' + 'QRcode' + code + '.png', 'wb') as f:
+    with open('./output/barcode/' + 'QRcode' + code + '.png', 'wb') as f:
         vip_qrcode.save(f)
-    return send_from_directory('./barcode/', 'QRcode' + code + '.png')
+    return send_from_directory('./output/barcode/', 'QRcode' + code + '.png')

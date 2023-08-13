@@ -5,7 +5,10 @@ from flask_sqlalchemy import SQLAlchemy
 
 from ..db import db
 
-from application import app
+STATUS_MAPPING = {
+    '1': '正常',
+    '0': '已删除'
+}
 
 
 class FoodCat(db.Model):
@@ -20,4 +23,4 @@ class FoodCat(db.Model):
 
     @property
     def status_desc(self):
-        return app.config['STATUS_MAPPING'][str(self.status)]
+        return STATUS_MAPPING[str(self.status)]

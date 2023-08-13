@@ -3,7 +3,14 @@ from sqlalchemy import BigInteger, Column, DateTime, Index, Integer, Numeric, St
 from sqlalchemy.schema import FetchedValue
 from ..db import db
 
-from application import app
+PAY_STATUS_DISPLAY_MAPPING = {
+    "0": "订单关闭",
+    "1": "支付成功",
+    "-8": "待支付",
+    "-7": "代发货",
+    "-6": "待确认",
+    "-5": "待评价"
+}
 
 
 class PayOrder(db.Model):
@@ -43,7 +50,7 @@ class PayOrder(db.Model):
 
     @property
     def status_desc(self):
-        return app.config['PAY_STATUS_DISPLAY_MAPPING'][str(self.pay_status)]
+        return PAY_STATUS_DISPLAY_MAPPING[str(self.pay_status)]
 
     @property
     def order_number(self):

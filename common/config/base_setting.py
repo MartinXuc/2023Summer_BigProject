@@ -1,6 +1,9 @@
 SERVER_PORT = 80
 DEBUG = False
+
+
 SQLALCHEMY_ECHO = False  # 打印sql语句
+
 AUTH_COOKIE_NAME = 'mooc_food'
 
 # 过滤url
@@ -19,11 +22,6 @@ API_IGNORE_URLS = [
 PAGE_SIZE = 50
 PAGE_DISPLAY = 10
 
-STATUS_MAPPING = {
-    '1': '正常',
-    '0': '已删除'
-}
-
 MINA_APP = {
     'app_id': 'wxd29bc59e4f792895',
     'app_secret': 'd9e38579606befc209c09d2e52de839f',
@@ -39,15 +37,10 @@ UPLOAD = {
 }
 
 APP = {
-    'domain': 'http://highvorz.website'
+    'domain': 'http://highvorz.website',
+    'root_path': '',
+    
 }
 
-PAY_STATUS_DISPLAY_MAPPING = {
-    "0": "订单关闭",
-    "1": "支付成功",
-    "-8": "待支付",
-    "-7": "代发货",
-    "-6": "待确认",
-    "-5": "待评价"
-}
+
 

@@ -1,7 +1,5 @@
 import time
-
-from application import app
-
+from common.config.base_setting import APP, UPLOAD
 
 class UrlManager:
     def __init__(self):
@@ -13,15 +11,14 @@ class UrlManager:
 
     @classmethod
     def static_url(cls, path):
-        release_version = app.config.get('RELEASE_VERSION')
-        ver = "%s" % int(time.time()) if not release_version else release_version
+        ver = "%s" % int(time.time())
         path = '/static' + path + "?ver=" + ver
         return cls.build_url(path)
 
     @staticmethod
     def build_image_url(path):
-        app_config = app.config['APP']
-        url = app_config['domain'] + app.config['UPLOAD']['prefix_url'] + path
+        
+        url = APP['domain'] + UPLOAD['prefix_url'] + path
         return url
     
     @staticmethod

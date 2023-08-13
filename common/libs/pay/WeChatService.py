@@ -6,7 +6,6 @@ import requests
 
 from application import app
 
-
 class WeChatService:
     def __init__(self, merchant_key=None):
         self.merchant_key = merchant_key

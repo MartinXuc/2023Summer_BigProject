@@ -5,7 +5,8 @@ import string
 
 import requests
 from common.models.db import db
-from application import app
+from common.config.base_setting import MINA_APP
+
 from common.models.member.Member import Member
 from common.models.member.OauthMemberBind import OauthMemberBind
 from common.libs.Helper import getCurrentDate
@@ -31,7 +32,7 @@ class MemberService:
         if code is None:
             return None
         url = 'https://api.weixin.qq.com/sns/jscode2session?appid={0}&secret={1}&js_code={2}&grant_type=authorization_code'.format(
-            app.config['MINA_APP']['app_id'], app.config['MINA_APP']['app_secret'], code)
+            MINA_APP['app_id'], MINA_APP['app_secret'], code)
         
         
         res = requests.get(url).json()

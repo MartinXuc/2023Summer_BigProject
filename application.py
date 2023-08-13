@@ -1,7 +1,9 @@
 import os
 from flask import Flask
 from flask_script import Manager
+
 from common.models.db import db
+from common.config.base_setting import APP
 
 
 # app 对象
@@ -16,15 +18,20 @@ class Application(Flask):
         )
 
         # app.config 初始化
-        self.config.from_pyfile('config/base_setting.py')  # 从base_setting.py中加载基础配置
-        self.config.from_pyfile('config/resource_setting.py')
+        self.config.from_pyfile('common/config/base_setting.py')  # 从base_setting.py中加载基础配置
+        self.config.from_pyfile('common/config/resource_setting.py')
+
         os.environ['ops_config'] = 'local'  # 设置环境变量ops_config为local [local or production]
         if 'ops_config' in os.environ:
-            print('config/%s_setting.py' % os.environ['ops_config'])
-            self.config.from_pyfile('config/%s_setting.py' % os.environ['ops_config'])  # 根据环境变量加载对应的配置文件
+            print('common/config/%s_setting.py' % os.environ['ops_config'])
+            self.config.from_pyfile('common/config/%s_setting.py' % os.environ['ops_config'])  # 根据环境变量加载对应的配置文件
 
+        # 配置
+        APP['root_path'] = self.root_path
+        
         # 初始化数据库
         # 相当于 db = SQLALchemy(app)
+        
         db.init_app(self)  
 
 

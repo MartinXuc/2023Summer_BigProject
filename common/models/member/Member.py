@@ -3,8 +3,16 @@ from sqlalchemy import Column, DateTime, Integer, String
 from sqlalchemy.schema import FetchedValue
 from ..db import db
 
-from application import app
+STATUS_MAPPING = {
+    '1': '正常',
+    '0': '已删除'
+}
 
+SEX_MAPPING = {
+            '0': '未知',
+            '1': '男',
+            '2': '女'
+        }
 
 class Member(db.Model):
     __tablename__ = 'member'
@@ -23,13 +31,9 @@ class Member(db.Model):
 
     @property
     def status_desc(self):
-        return app.config['STATUS_MAPPING'][str(self.status)]
+        return STATUS_MAPPING[str(self.status)]
 
     @property
     def sex_desc(self):
-        sex_mapping = {
-            '0': '未知',
-            '1': '男',
-            '2': '女'
-        }
-        return sex_mapping[str(self.sex)]
+        
+        return SEX_MAPPING[str(self.sex)]

@@ -5,8 +5,6 @@ from flask_sqlalchemy import SQLAlchemy
 
 from ..db import db
 
-from application import app
-
 
 class FoodSaleChangeLog(db.Model):
     __tablename__ = 'food_sale_change_log'

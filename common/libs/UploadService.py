@@ -6,7 +6,7 @@ from werkzeug.utils import secure_filename
 
 from common.models.db import db
 
-from application import app
+from common.config.base_setting import UPLOAD, APP
 from common.libs.Helper import getCurrentDate
 from common.models.Image import Image
 
@@ -14,15 +14,14 @@ from common.models.Image import Image
 class UploadService():
     @staticmethod
     def upload_by_file(file):
-        config_upload = app.config['UPLOAD']
         resp = {'code': 200, 'msg': 'success', 'data': {}}
         filename = secure_filename(file.filename)
         ext = filename.rsplit('.', 1)[1]
-        if ext not in config_upload['ext']:
+        if ext not in UPLOAD['ext']:
             resp['code'] = -1
             resp['msg'] = '不允许的扩展类型文件！'
 
-        root_path = app.root_path + config_upload['prefix_path']
+        root_path = APP['root_path'] + UPLOAD['prefix_path']
         file_dir = getCurrentDate('%Y%m%d')
         save_dir = root_path + file_dir
         if not os.path.exists(save_dir):
