@@ -21,5 +21,4 @@ if __name__ == '__main__':
         sys.exit(main())
     except Exception as e:
         import traceback
-
         traceback.print_exc()  # 打印错误信息
