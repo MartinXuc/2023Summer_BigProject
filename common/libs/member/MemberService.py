@@ -4,8 +4,8 @@ import random
 import string
 
 import requests
-
-from application import app, db
+from common.models.db import db
+from application import app
 from common.models.member.Member import Member
 from common.models.member.OauthMemberBind import OauthMemberBind
 from common.libs.Helper import getCurrentDate

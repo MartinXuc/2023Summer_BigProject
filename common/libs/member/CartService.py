@@ -1,4 +1,4 @@
-from application import db
+from common.models.db import db
 from common.libs.Helper import getCurrentDate
 from common.models.member.MemberCart import MemberCart
 

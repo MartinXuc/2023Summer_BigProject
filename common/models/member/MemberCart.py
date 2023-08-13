@@ -1,4 +1,4 @@
-from application import db
+from ..db import db
 
 
 class MemberCart(db.Model):

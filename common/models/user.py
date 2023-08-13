@@ -2,7 +2,7 @@
 from sqlalchemy import BigInteger, Column, DateTime, Integer, String
 from sqlalchemy.schema import FetchedValue
 
-from application import db
+from .db import db
 
 
 class User(db.Model):

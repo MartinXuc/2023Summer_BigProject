@@ -3,7 +3,9 @@ from sqlalchemy import Column, DateTime, Integer, String
 from sqlalchemy.schema import FetchedValue
 from flask_sqlalchemy import SQLAlchemy
 
-from application import db, app
+from ..db import db
+
+from application import app
 
 
 class FoodCat(db.Model):

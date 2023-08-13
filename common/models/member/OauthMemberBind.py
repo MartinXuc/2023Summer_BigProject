@@ -2,7 +2,7 @@
 from sqlalchemy import Column, DateTime, Index, Integer, String, Text
 from sqlalchemy.schema import FetchedValue
 
-from application import db
+from ..db import db
 
 
 class OauthMemberBind(db.Model):

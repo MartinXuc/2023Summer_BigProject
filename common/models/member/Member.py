@@ -1,8 +1,9 @@
 # coding: utf-8
 from sqlalchemy import Column, DateTime, Integer, String
 from sqlalchemy.schema import FetchedValue
+from ..db import db
 
-from application import db, app
+from application import app
 
 
 class Member(db.Model):

@@ -4,7 +4,9 @@ import uuid
 
 from werkzeug.utils import secure_filename
 
-from application import app, db
+from common.models.db import db
+
+from application import app
 from common.libs.Helper import getCurrentDate
 from common.models.Image import Image
 

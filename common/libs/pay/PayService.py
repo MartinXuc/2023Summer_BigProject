@@ -2,8 +2,7 @@ import decimal
 import hashlib
 from random import randint
 from time import time
-
-from application import db
+from common.models.db import db
 from common.libs.Helper import getCurrentDate, std_resp
 from common.libs.food.FoodService import FoodService
 from common.models.food.food import Food

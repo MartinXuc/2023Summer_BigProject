@@ -2,7 +2,7 @@
 from sqlalchemy import Column, DateTime, Integer, String, Text
 from sqlalchemy.schema import FetchedValue
 
-from application import db
+from ..db import db
 
 
 class AppErrorLog(db.Model):

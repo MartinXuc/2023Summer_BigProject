@@ -1,7 +1,7 @@
 import os
 from flask import Flask
 from flask_script import Manager
-from flask_sqlalchemy import SQLAlchemy
+from common.models.db import db
 
 
 # app 对象
@@ -27,8 +27,7 @@ class Application(Flask):
         # 相当于 db = SQLALchemy(app)
         db.init_app(self)  
 
-# 创建SQLAlchemy对象
-db = SQLAlchemy()  
+
 
 # 创建app对象
 app = Application(__name__, template_folder=os.getcwd() + '/web/templates', root_path=os.getcwd())  # 创建Flask应用程序实例

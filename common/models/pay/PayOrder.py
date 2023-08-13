@@ -1,7 +1,9 @@
 # coding: utf-8
 from sqlalchemy import BigInteger, Column, DateTime, Index, Integer, Numeric, String, Text
 from sqlalchemy.schema import FetchedValue
-from application import db, app
+from ..db import db
+
+from application import app
 
 
 class PayOrder(db.Model):

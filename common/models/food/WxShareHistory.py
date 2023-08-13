@@ -1,5 +1,4 @@
-from application import db
-
+from ..db import db
 
 class WxShareHistory(db.Model):
     __tablename__ = 'wx_share_history'

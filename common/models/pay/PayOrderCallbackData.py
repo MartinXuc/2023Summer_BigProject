@@ -1,7 +1,7 @@
 # coding: utf-8
 from sqlalchemy import Column, DateTime, Integer, Text
 from sqlalchemy.schema import FetchedValue
-from application import db
+from ..db import db
 
 
 class PayOrderCallbackData(db.Model):
