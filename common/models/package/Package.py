@@ -1,7 +1,4 @@
-from sqlalchemy import Column, DateTime, Integer, String
-from sqlalchemy.schema import FetchedValue
-
-from application import db, app
+from application import db
 
 
 class Package(db.Model):

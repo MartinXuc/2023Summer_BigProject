@@ -102,6 +102,8 @@ def set():
 
 @route_member.route("/comment")
 def comment():
+    # 查询会员评论
+
     return ops_render("member/comment.html")
 
 

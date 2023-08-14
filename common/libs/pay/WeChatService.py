@@ -29,7 +29,7 @@ class WeChatService:
         :param xml_data:
         :return:
         '''
-        
+
         pay_data['sign'] = self.create_sign(pay_data)
         xml_data = self.dict_to_xml(pay_data)
         headers = {'Content-Type': 'application/xml'}

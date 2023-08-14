@@ -1,14 +1,13 @@
 import hashlib
-import base64
 import random
 import string
 
 import requests
 
 from application import app, db
+from common.libs.Helper import getCurrentDate
 from common.models.member.Member import Member
 from common.models.member.OauthMemberBind import OauthMemberBind
-from common.libs.Helper import getCurrentDate
 
 
 class MemberService:
@@ -32,23 +31,20 @@ class MemberService:
             return None
         url = 'https://api.weixin.qq.com/sns/jscode2session?appid={0}&secret={1}&js_code={2}&grant_type=authorization_code'.format(
             app.config['MINA_APP']['app_id'], app.config['MINA_APP']['app_secret'], code)
-        
-        
+
         res = requests.get(url).json()
 
-        
         openid = None
         if 'openid' in res:
             openid = res['openid']
         return openid
-    
+
     @staticmethod
     def create_new_member(req):
         openid = req['openid'] if 'openid' in req else ''
         name = req['name'] if 'name' in req else ''
         sex = req['gender'] if 'gender' in req else 0
         avatar = req['avatarUrl'] if 'avatarUrl' in req else ''
-
 
         # 判断是否已经测试过，注册了直接返回一些信息
         bind_info = OauthMemberBind.query.filter_by(openid=openid, type=1).first()
@@ -84,4 +80,3 @@ class MemberService:
         member_info = Member.query.filter_by(id=member_id).first()
         token = "%s#%s" % (MemberService.gene_auth_code(member_info), member_info.id)
         return token
-

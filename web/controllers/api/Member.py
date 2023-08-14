@@ -1,8 +1,7 @@
-import requests
 from flask import request, jsonify, g
-import sys
-import json
-from application import app, db
+from flask import request, jsonify, g
+
+from application import db
 from common.libs.Helper import getCurrentDate, std_resp
 from common.libs.member.MemberService import MemberService
 from common.models.food.WxShareHistory import WxShareHistory
@@ -16,9 +15,9 @@ from web.controllers.api import route_api
 def login():
     resp = std_resp()
     req = request.values
-    
+
     code = req['code'] if req['code'] is not None else None
-    
+
     openid = MemberService.getWeChatOpenId(code)
     if openid is None:
         resp['code'] = -1
@@ -30,6 +29,7 @@ def login():
 
     resp['data'] = {'token': token}
     return jsonify(resp)
+
 
 # 验证注册
 @route_api.route("/member/check-reg", methods=["GET", "POST"])
@@ -63,6 +63,7 @@ def checkReg():
     resp['data'] = {'token': token}
     return jsonify(resp)
 
+
 @route_api.route("member/check-login")
 def check_login():
     resp = std_resp()
@@ -70,13 +71,14 @@ def check_login():
     if member_info is None:
         resp['msg'] = 'None'
         return jsonify(resp)
-    
+
     member = {
-            'id' : member_info.id,
-            'name' : member_info.name,
-        }
+        'id': member_info.id,
+        'name': member_info.name,
+    }
     resp['data']['member_info'] = member
-    return jsonify(resp) 
+    return jsonify(resp)
+
 
 # 提交分享内容
 @route_api.route("/member/share", methods=['POST'])

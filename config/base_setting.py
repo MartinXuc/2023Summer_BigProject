@@ -8,10 +8,13 @@ IGNORE_URLS = [
     '^/user/login',
 ]
 
+# 过滤静态资源
 IGNORE_CHECK_LOGIN_URLS = [
     "^/static",
     "^/favicon.ico"
 ]
+
+# 过滤api
 API_IGNORE_URLS = [
     # '^/api'
 ]
@@ -24,6 +27,7 @@ STATUS_MAPPING = {
     '0': '已删除'
 }
 
+# wx小程序配置
 MINA_APP = {
     'app_id': 'wxd29bc59e4f792895',
     'app_secret': 'd9e38579606befc209c09d2e52de839f',
@@ -32,6 +36,7 @@ MINA_APP = {
     "callback_url": "/api/order/callback"
 }
 
+# 上传文件配置
 UPLOAD = {
     'ext': ['jpg', 'gif', 'bmp', 'jpeg', 'png'],
     'prefix_path': '/web/static/upload/',
@@ -39,7 +44,8 @@ UPLOAD = {
 }
 
 APP = {
-    'domain': 'http://highvorz.website'
+    # 'domain': 'http://highvorz.website'
+    'domain': 'http://192.168.26.11:80'
 }
 
 PAY_STATUS_DISPLAY_MAPPING = {

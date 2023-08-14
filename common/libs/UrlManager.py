@@ -23,7 +23,7 @@ class UrlManager:
         app_config = app.config['APP']
         url = app_config['domain'] + app.config['UPLOAD']['prefix_url'] + path
         return url
-    
+
     @staticmethod
     def build_res(res):
         if res:
