@@ -23,23 +23,23 @@ def login():
 
     if login_name is None or len(login_name) < 1:
         resp['code'] = -1
-        resp['msg'] = "请输入正确的用户名！"
+        resp['msg'] = "Wrong user format!"
         return jsonify(resp)
 
     if login_pwd is None or len(login_pwd) < 1:
         resp['code'] = -1
-        resp['msg'] = "请输入正确的密码！"
+        resp['msg'] = "error"
         return jsonify(resp)
 
     user_info = User.query.filter_by(login_name=login_name).first()
     if not user_info:
         resp['code'] = -1
-        resp['msg'] = "请输入正确的用户名和密码！"
+        resp['msg'] = "user doesn't exist!"
         return jsonify(resp)
 
     if user_info.login_pwd != UserService.gene_pwd(login_pwd, user_info.login_salt):
         resp['code'] = -1
-        resp['msg'] = "请输入正确的用户名和密码！"
+        resp['msg'] = "error"
         return jsonify(resp)
 
     if user_info.status != 1:
@@ -59,13 +59,13 @@ def edit():
     if request.method == "GET":
         return ops_render("user/edit.html", {"current": "edit"})
 
-    resp = {'code': 200, 'msg': "操作成功！", 'data': {}}
+    resp = {'code': 200, 'msg': "success！", 'data': {}}
 
     req = request.values
-    nickname = req['nickname'] if 'nickname' in req else ''
+    name = req['name'] if 'name' in req else ''
     email = req['email'] if 'email' in req else ''
 
-    if nickname is None or len(nickname) < 1:
+    if name is None or len(name) < 1:
         resp['code'] = -1
         resp['msg'] = '请输入符合规范的姓名！'
         return jsonify(resp)
@@ -76,7 +76,7 @@ def edit():
         return jsonify(resp)
 
     user_info = g.current_user
-    user_info.nickname = nickname
+    user_info.name = name
     user_info.email = email
 
     db.session.add(user_info)
@@ -90,7 +90,7 @@ def reset_pwd():
     if request.method == "GET":
         return ops_render("user/reset_pwd.html", {"current": "reset-pwd"})
 
-    resp = {'code': 200, 'msg': "操作成功！", 'data': {}}
+    resp = {'code': 200, 'msg': "success！", 'data': {}}
 
     req = request.values
     old_password = req['old_password'] if 'old_password' in req else ''

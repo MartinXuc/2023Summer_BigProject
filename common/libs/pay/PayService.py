@@ -1,16 +1,17 @@
 import decimal
 import hashlib
+import traceback
 from random import randint
 from time import time
 
 from application import db
-from common.libs.Helper import getCurrentDate
+from common.libs.Helper import getCurrentDate, std_resp
 from common.libs.food.FoodService import FoodService
 from common.models.food.food import Food
 from common.models.food.food_sale_change_log import FoodSaleChangeLog
 from common.models.pay.PayOrder import PayOrder
-from common.models.pay.PayOrderItem import PayOrderItem
 from common.models.pay.PayOrderCallbackData import PayOrderCallbackData
+from common.models.pay.PayOrderItem import PayOrderItem
 
 
 class PayService():
@@ -18,12 +19,16 @@ class PayService():
         pass
 
     def create_order(self, member_id, items=None, params=None):
-        resp = {'code': 200, 'msg': '操作成功', 'date': {}}
+        '''
+            创建订单, 未支付
+        '''
+        resp = std_resp()
 
         pay_price = decimal.Decimal(0.00)
         continue_cnt = 0
         foods_id = []
-        for item in items:
+        for key in items:
+            item = items[key]
             if decimal.Decimal(item['price']) < 0:
                 continue_cnt += 1
                 continue
@@ -33,10 +38,11 @@ class PayService():
             resp['code'] = -1
             resp['msg'] = '商品items为空'
             return resp
-        yun_price = params['yun_price'] if params and 'yun_price' in params else 0
+        yun_price = 0
         note = params['note'] if params and 'note' in params else ''
         yun_price = decimal.Decimal(yun_price)
         total_price = pay_price + yun_price
+
         try:
             tmp_food_list = db.session.query(Food).filter(Food.id.in_(foods_id)) \
                 .with_for_update().all()
@@ -59,7 +65,8 @@ class PayService():
 
                 db.session.add(model_pay_order)
 
-                for item in items:
+                for key in items:
+                    item = items[key]
                     tmp_left_stock = tmp_food_stock_mapping[item['id']]
                     if decimal.Decimal(item['price']) < 0:
                         continue
@@ -93,15 +100,17 @@ class PayService():
 
         except Exception as e:
             db.session.rollback()
-            print(e)
             resp['code'] = -1
-            resp['msg'] = "下单失败请重新下单"
-            resp['msg'] = str(e)
+            resp['msg'] = "创建订单失败"
+            resp['debug'] = traceback.format_exc()
             return resp
 
         return resp
 
     def geneOrderSn(self):
+        '''
+            生成订单号
+        '''
         m = hashlib.md5()
         sn = None
         while True:

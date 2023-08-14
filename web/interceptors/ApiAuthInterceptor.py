@@ -31,7 +31,7 @@ def before_request():
         return
 
     if not member_info:
-        resp = {'code': -1, 'msg': '未登录~', 'data': {}}
+        resp = {'code': -1, 'msg': '拦截器拦截', 'data': {}}
         return jsonify(resp)
     return
 
@@ -42,6 +42,7 @@ def check_member_login():
     :return:
     """
     auth_cookie = request.headers.get("Authorization")
+
     if auth_cookie is None:
         return False
 
@@ -49,12 +50,14 @@ def check_member_login():
     if len(auth_info) != 2:
         return False
     try:
+        # 查找是否有用户
         member_info = Member.query.filter_by(id=auth_info[1]).first()
     except Exception:
         return False
     if member_info is None:
         return False
 
+    # 验证token前部
     if auth_info[0] != MemberService.gene_auth_code(member_info):
         return False
 

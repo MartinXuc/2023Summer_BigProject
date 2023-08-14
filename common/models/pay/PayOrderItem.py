@@ -1,6 +1,4 @@
 # coding: utf-8
-from sqlalchemy import BigInteger, Column, DateTime, Integer, Numeric, Text
-from sqlalchemy.schema import FetchedValue
 from application import db
 
 

@@ -18,7 +18,7 @@ class LogService():
         target.query_params = json.dumps(request.values.to_dict())
         if 'current_user' in g and g.current_user is not None:
             target.uid = g.current_user.uid
-        target.ua = request.headers.get("User-Agent")
+        target.ua = request.headers.get("User-Agent")[0:1024]
         target.created_time = getCurrentDate()
         db.session.add(target)
         db.session.commit()

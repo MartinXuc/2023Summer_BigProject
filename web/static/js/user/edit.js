@@ -10,14 +10,14 @@ var user_edit_ops = {
                 common_ops.alert("正在处理，请不要重复提交！");
                 return
             }
-            var nickname_target = $(".user_edit_wrap input[name=nickname]");
-            var nickname = nickname_target.val();
+            var name_target = $(".user_edit_wrap input[name=name]");
+            var name = name_target.val();
 
             var email_target = $(".user_edit_wrap input[name=email]");
             var email = email_target.val();
 
-            if (!nickname || nickname.length < 2) {
-                common_ops.tip("请输入符合规范的姓名！", nickname_target);
+            if (!name || name.length < 2) {
+                common_ops.tip("请输入符合规范的姓名！", name_target);
                 return
             }
             if (!email || email.length < 2) {
@@ -28,7 +28,7 @@ var user_edit_ops = {
             btn_target.addClass("disabled");
 
             var data = {
-                nickname: nickname,
+                name: name,
                 email: email
             };
             $.ajax({

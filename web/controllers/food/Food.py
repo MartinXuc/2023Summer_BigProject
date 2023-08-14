@@ -52,6 +52,7 @@ def index():
     return ops_render("food/index.html", resp_data)
 
 
+
 @route_food.route("/info")
 def info():
     resp_data = {}
@@ -204,7 +205,7 @@ def cat_set():
         resp_data['current'] = 'cat'
         return ops_render("food/cat_set.html", resp_data)
 
-    resp = {'code': 200, 'msg': '操作成功', 'data': {}}
+    resp = {'code': 200, 'msg': 'success', 'data': {}}
     req = request.values
 
     id = req['id'] if 'id' in req else 0
@@ -232,7 +233,7 @@ def cat_set():
 
 @route_food.route("/cat-ops", methods=["POST"])
 def cat_ops():
-    resp = {'code': 200, 'msg': '操作成功!', 'data': {}}
+    resp = {'code': 200, 'msg': 'success!', 'data': {}}
     req = request.values
 
     id = req['id'] if 'id' in req else 0
@@ -268,7 +269,7 @@ def cat_ops():
 
 @route_food.route("/ops", methods=["POST"])
 def ops():
-    resp = {'code': 200, 'msg': '操作成功', 'data': {}}
+    resp = {'code': 200, 'msg': 'success', 'data': {}}
     req = request.values
 
     id = req['id'] if 'id' in req else 0

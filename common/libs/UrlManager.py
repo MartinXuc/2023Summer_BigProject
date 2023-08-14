@@ -23,3 +23,9 @@ class UrlManager:
         app_config = app.config['APP']
         url = app_config['domain'] + app.config['UPLOAD']['prefix_url'] + path
         return url
+
+    @staticmethod
+    def build_res(res):
+        if res:
+            for key in res:
+                res[key] = UrlManager.build_image_url(res[key])

@@ -91,3 +91,7 @@ def select_filter_obj(obj, field):
             continue
         ret.append(getattr(item, field))
     return ret
+
+
+def std_resp():
+    return {'code': 200, 'msg': 'success', 'data': {}}

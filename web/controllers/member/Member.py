@@ -17,7 +17,7 @@ def index():
     query = Member.query
 
     if 'mix_kw' in req:
-        query = query.filter(Member.nickname.ilike("%{0}%".format(req['mix_kw'])))
+        query = query.filter(Member.name.ilike("%{0}%".format(req['mix_kw'])))
 
     if 'status' in req and int(req['status']) > -1:
         query = query.filter(Member.status == int(req['status']))
@@ -77,12 +77,12 @@ def set():
         resp_data['info'] = info
         resp_data['current'] = 'index'
         return ops_render("member/set.html", resp_data)
-    resp = {'code': 200, 'msg': '操作成功', 'data': {}}
+    resp = {'code': 200, 'msg': 'success', 'data': {}}
     req = request.values
     id = req['id'] if 'id' in req else 0
-    nickname = req['nickname'] if 'nickname' in req else ''
+    name = req['name'] if 'name' in req else ''
 
-    if nickname is None or len(nickname) < 1:
+    if name is None or len(name) < 1:
         resp['code'] = -1
         resp['msg'] = '请输入规范的姓名！'
         return jsonify(resp)
@@ -93,7 +93,7 @@ def set():
         resp['msg'] = '指定的会员不存在！'
         return jsonify(resp)
 
-    member_info.nickname = nickname
+    member_info.name = name
     member_info.updated_time = getCurrentDate()
     db.session.add(member_info)
     db.session.commit()
@@ -102,12 +102,14 @@ def set():
 
 @route_member.route("/comment")
 def comment():
+    # 查询会员评论
+
     return ops_render("member/comment.html")
 
 
 @route_member.route('/ops', methods=['POST'])
 def ops():
-    resp = {'code': 200, 'msg': '操作成功', 'data': {}}
+    resp = {'code': 200, 'msg': 'success', 'data': {}}
     req = request.values
 
     id = req['id'] if 'id' in req else 0

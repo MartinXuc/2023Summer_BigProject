@@ -9,7 +9,7 @@ class User(db.Model):
     __tablename__ = 'user'
 
     uid = db.Column(db.BigInteger, primary_key=True)
-    nickname = db.Column(db.String(100), nullable=False, server_default=db.FetchedValue())
+    name = db.Column(db.String(100), nullable=False, server_default=db.FetchedValue())
     mobile = db.Column(db.String(20), nullable=False, server_default=db.FetchedValue())
     email = db.Column(db.String(100), nullable=False, server_default=db.FetchedValue())
     sex = db.Column(db.Integer, nullable=False, server_default=db.FetchedValue())

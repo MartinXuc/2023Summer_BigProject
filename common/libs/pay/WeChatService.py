@@ -30,8 +30,7 @@ class WeChatService:
         :return:
         '''
 
-        sign = self.create_sign(pay_data)
-        pay_data['sign'] = sign
+        pay_data['sign'] = self.create_sign(pay_data)
         xml_data = self.dict_to_xml(pay_data)
         headers = {'Content-Type': 'application/xml'}
         url = "https://api.mch.weixin.qq.com/pay/unifiedorder"
