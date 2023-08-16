@@ -1,0 +1,24 @@
+[[source]]
+url = "https://pypi.tuna.tsinghua.edu.cn/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+flask = "*"
+flask-script = "*"
+flask-bootstrap = "*"
+flask-moment = "*"
+flask-wtf = "*"
+flask-sqlalchemy = "*"
+flask-sqlacodegen = "*"
+cymysql = "*"
+pymysql = "*"
+requests = "*"
+python-barcode = "*"
+pillow = "*"
+qrcode = "*"
+
+[dev-packages]
+
+[requires]
+python_version = "3.10"
