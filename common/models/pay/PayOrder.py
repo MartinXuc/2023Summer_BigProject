@@ -1,16 +1,10 @@
 # coding: utf-8
 from sqlalchemy import BigInteger, Column, DateTime, Index, Integer, Numeric, String, Text
 from sqlalchemy.schema import FetchedValue
+from common.config.base_setting import PAY_STATUS_DISPLAY_MAPPING
 from ..db import db
 
-PAY_STATUS_DISPLAY_MAPPING = {
-    "0": "订单关闭",
-    "1": "支付成功",
-    "-8": "待支付",
-    "-7": "代发货",
-    "-6": "待确认",
-    "-5": "待评价"
-}
+
 
 
 class PayOrder(db.Model):

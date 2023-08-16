@@ -157,8 +157,6 @@ def orderPay():
 
     # resp['data']['pay_info'] = pay_info
 
-
-
     return jsonify(resp)
 
 # 订单结果

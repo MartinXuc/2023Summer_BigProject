@@ -5,6 +5,7 @@ from application import app, db
 from common.libs.Helper import ops_render, i_pagination, getCurrentDate
 from common.libs.UrlManager import UrlManager
 from common.models.member.Member import Member
+from common.models.pay.PayOrder import PayOrder
 
 route_member = Blueprint('member_page', __name__)
 
@@ -102,8 +103,23 @@ def set():
 
 @route_member.route("/comment")
 def comment():
-    
-    return ops_render("member/comment.html")
+    members = Member.query.all()
+    list = []
+    for member in members:
+        avatar = member.avatar
+        username = member.name
+        orders = PayOrder.query.all()
+        for order in orders:
+            order_sn = order.order_sn
+            order_comment = order.note
+            temp = {
+                "avatar": avatar,
+                "username": username,
+                "order_sn": order_sn,
+                "order_comment": order_comment,
+            }
+            list.append(temp)
+    return ops_render("member/comment.html", {"list": list})
 
 
 @route_member.route('/ops', methods=['POST'])

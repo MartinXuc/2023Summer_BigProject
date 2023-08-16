@@ -16,7 +16,7 @@
 </div>
 <div class="row">
     <div class="col-lg-12 m-t">
-        <p>总收款金额：5.35元</p>
+        <p>总收款金额：{{total}}元</p>
     </div>
     <div class="col-lg-12">
         <table class="table table-bordered m-t">
@@ -28,11 +28,15 @@
             </tr>
             </thead>
             <tbody>
-            <tr>
-                <td>20180224387</td>
-                <td>0.05</td>
-                <td>2018-02-24 12:37</td>
-            </tr>
+            {% if list %}
+            {% for item in list %}
+                <tr>
+                    <td>{{item.order_sn}}</td>
+                    <td>{{item.price}}</td>
+                    <td>{{item.create_time}}</td>
+                </tr>
+            {% endfor %}
+            {% endif %}
             </tbody>
         </table>
         <div class="row">

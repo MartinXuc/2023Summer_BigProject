@@ -2,13 +2,8 @@
 from sqlalchemy import Column, DateTime, Integer, String
 from sqlalchemy.schema import FetchedValue
 from flask_sqlalchemy import SQLAlchemy
-
+from common.config.base_setting import STATUS_MAPPING
 from ..db import db
-
-STATUS_MAPPING = {
-    '1': '正常',
-    '0': '已删除'
-}
 
 
 class FoodCat(db.Model):

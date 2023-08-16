@@ -2,11 +2,8 @@
 from sqlalchemy import Column, DateTime, Integer, String
 from sqlalchemy.schema import FetchedValue
 from ..db import db
+from common.config.base_setting import STATUS_MAPPING
 
-STATUS_MAPPING = {
-    '1': '正常',
-    '0': '已删除'
-}
 
 SEX_MAPPING = {
             '0': '未知',

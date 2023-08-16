@@ -42,22 +42,25 @@
             </tr>
             </thead>
             <tbody>
-            <tr>
-                <td>20171231347</td>
-                <td>
-                    小鸡炖蘑菇 × 1<br>
-                </td>
-                <td>0.01</td>
-                <td>
-                </td>
-                <td>已关闭</td>
-                <td>2017-12-31 13:35</td>
-                <td>
-                    <a href="{{ build_url('/finance/pay-info') }}">
-                        <i class="fa fa-eye fa-lg"></i>
-                    </a>
-                </td>
-            </tr>
+                {% if list %}
+                {% for item in list %}
+                <tr>
+                    <td>{{item.order_sn}}</td>
+                    <td>
+                        {{item.foodname}}<br>
+                    </td>
+                    <td>{{item.price}}</td>
+                    <td></td>
+                    <td>{{item.status_desc}}</td>
+                    <td>{{item.create_time}}</td>
+                    <td>
+                        <a href="{{ build_url('/finance/pay-info') }}">
+                            <i class="fa fa-eye fa-lg"></i>
+                        </a>
+                    </td>
+                </tr>
+                {% endfor %}
+                {% endif %}
             </tbody>
         </table>
         <!--分页代码已被封装到统一模板文件中-->
