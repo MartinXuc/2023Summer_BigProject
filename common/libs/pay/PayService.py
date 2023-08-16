@@ -1,5 +1,6 @@
 import decimal
 import hashlib
+import traceback
 from random import randint
 from time import time
 from common.models.db import db
@@ -8,11 +9,10 @@ from common.libs.food.FoodService import FoodService
 from common.models.food.food import Food
 from common.models.food.food_sale_change_log import FoodSaleChangeLog
 from common.models.pay.PayOrder import PayOrder
-from common.models.pay.PayOrderItem import PayOrderItem
 from common.models.pay.PayOrderCallbackData import PayOrderCallbackData
+from common.models.pay.PayOrderItem import PayOrderItem
 
-import traceback
-    
+
 class PayService():
     def __init__(self):
         pass
@@ -46,7 +46,6 @@ class PayService():
             tmp_food_list = db.session.query(Food).filter(Food.id.in_(foods_id)) \
                 .with_for_update().all()
 
-            
             tmp_food_stock_mapping = {}
             for tmp_item in tmp_food_list:
                 tmp_food_stock_mapping[tmp_item.id] = tmp_item.stock
@@ -106,7 +105,6 @@ class PayService():
             return resp
 
         return resp
-
 
     def geneOrderSn(self):
         '''

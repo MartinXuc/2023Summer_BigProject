@@ -1,5 +1,4 @@
 import hashlib
-import base64
 import random
 import string
 
@@ -9,7 +8,6 @@ from common.config.base_setting import MINA_APP
 
 from common.models.member.Member import Member
 from common.models.member.OauthMemberBind import OauthMemberBind
-from common.libs.Helper import getCurrentDate
 
 
 class MemberService:
@@ -37,19 +35,17 @@ class MemberService:
         
         res = requests.get(url).json()
 
-        
         openid = None
         if 'openid' in res:
             openid = res['openid']
         return openid
-    
+
     @staticmethod
     def create_new_member(req):
         openid = req['openid'] if 'openid' in req else ''
         name = req['name'] if 'name' in req else ''
         sex = req['gender'] if 'gender' in req else 0
         avatar = req['avatarUrl'] if 'avatarUrl' in req else ''
-
 
         # 判断是否已经测试过，注册了直接返回一些信息
         bind_info = OauthMemberBind.query.filter_by(openid=openid, type=1).first()
@@ -85,4 +81,3 @@ class MemberService:
         member_info = Member.query.filter_by(id=member_id).first()
         token = "%s#%s" % (MemberService.gene_auth_code(member_info), member_info.id)
         return token
-

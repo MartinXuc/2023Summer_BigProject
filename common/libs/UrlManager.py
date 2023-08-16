@@ -20,7 +20,7 @@ class UrlManager:
         
         url = APP['domain'] + UPLOAD['prefix_url'] + path
         return url
-    
+
     @staticmethod
     def build_res(res):
         if res:

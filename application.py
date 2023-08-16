@@ -1,4 +1,5 @@
 import os
+
 from flask import Flask
 from flask_script import Manager
 
@@ -22,6 +23,8 @@ class Application(Flask):
         self.config.from_pyfile('common/config/resource_setting.py')
 
         os.environ['ops_config'] = 'local'  # 设置环境变量ops_config为local [local or production]
+
+        # os.environ: 环境变量
         if 'ops_config' in os.environ:
             print('common/config/%s_setting.py' % os.environ['ops_config'])
             self.config.from_pyfile('common/config/%s_setting.py' % os.environ['ops_config'])  # 根据环境变量加载对应的配置文件
