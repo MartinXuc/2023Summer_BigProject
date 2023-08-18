@@ -25,8 +25,9 @@ def get_home_res():
 @route_api.route("/home/package")
 def get_package():
     resp = std_resp()
+    
     package_list = Package.query.filter_by(type=0).all()
-
+    
     if not package_list:
         resp['code'] = 200
         resp['msg'] = '空'

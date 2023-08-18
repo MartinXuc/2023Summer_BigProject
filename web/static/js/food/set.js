@@ -89,25 +89,25 @@ var food_set_ops = {
                 return;
             }
 
-            if ($(".wrap_food_set .pic-each").size() < 1) {
-                common_ops.alert("请上传封面图~~");
-                return;
-            }
+            // if ($(".wrap_food_set .pic-each").size() < 1) {
+            //     common_ops.alert("请上传封面图~~");
+            //     return;
+            // }
 
-            if (summary.length < 10) {
-                common_ops.tip("请输入描述，并不能少于10个字符~~", price_target);
-                return;
-            }
+            // if (summary.length < 10) {
+            //     common_ops.tip("请输入描述，并不能少于10个字符~~", price_target);
+            //     return;
+            // }
 
             if (parseInt(stock) < 1) {
                 common_ops.tip("请输入符合规范的库存量~~", stock_target);
                 return;
             }
 
-            if (tags.length < 1) {
-                common_ops.alert("请输入标签，便于搜索~~");
-                return;
-            }
+            // if (tags.length < 1) {
+            //     common_ops.alert("请输入标签，便于搜索~~");
+            //     return;
+            // }
 
             btn_target.addClass("disabled");
 

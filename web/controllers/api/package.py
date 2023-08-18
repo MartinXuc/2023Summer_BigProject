@@ -31,6 +31,7 @@ def get_user_package():
         # raise ValueError(package.id)
         food = Food.query.filter_by(id = package.food_id).first()
         data[index] = {
+            'id': item.id,
             'food_id': food.id, 
             'food_name': food.name,
             'imgUrl': UrlManager.build_image_url(food.main_image),

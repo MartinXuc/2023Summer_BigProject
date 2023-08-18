@@ -37,7 +37,7 @@ UPLOAD = {
 }
 
 APP = {
-    'domain': 'http://highvorz.website',
+    'domain': 'http://192.168.5.246:80',
     'root_path': '',   
 }
 

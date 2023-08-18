@@ -1,14 +1,12 @@
 # 接口文档
 
-**domain**
+* [ ] **domain**
 
-http://highvorz.website.com 
+http://highvorz.website.com
 
 **port**
 
 80
-
-
 
 ## 前端接口
 
@@ -16,21 +14,15 @@ http://highvorz.website.com
 
 /api
 
-
-
 #### 餐品列表
 
 ###### **url**
 
 /api/food/index
 
-
-
 ###### **请求方式**
 
 GET
-
-
 
 ###### **返回数据**
 
@@ -38,19 +30,15 @@ GET
 
 200
 
-
-
 **msg**
 
 success
-
-
 
 **data**
 
 序列
 
-``` json
+```json
 "1": {
     "categorized_list": [
         {
@@ -66,36 +54,24 @@ success
 }
 ```
 
-
-
-| key | value | nullable | description |
-| --- | --- | --- | --- |
-| categorized_list | [] |          | 分类的菜品列表 |
-| tag              | "人气热卖" |  | 种类标签 |
-
-
+| key              | value      | nullable | description    |
+| ---------------- | ---------- | -------- | -------------- |
+| categorized_list | []         |          | 分类的菜品列表 |
+| tag              | "人气热卖" |          | 种类标签       |
 
 #### 创建订单
-
-
 
 ###### **功能**
 
 创建订单, 但还未支付状态
 
-
-
 ###### **url**
 
 /api/order/create
 
-
-
 ###### **请求方式**
 
 POST
-
-
 
 ###### **请求数据**
 
@@ -105,8 +81,6 @@ POST
 | note               | string    |          |             |
 | express_address_id | int       |          |             |
 | goods              | {}        |          | 商品列表    |
-
-
 
 ###### **返回数据**
 
@@ -125,10 +99,6 @@ success
 | id          |       | 订单id      |
 | order_sn    |       | 订单号      |
 | total_price |       | 总金额      |
-
-
-
-
 
 #### 支付订单
 
@@ -150,17 +120,11 @@ POST
 | -------- | ----- | -------- | ----------- |
 | order_sn |       | 必填     | 订单编号    |
 
-
-
 ###### 返回数据
 
 | key      | value | description |
 | -------- | ----- | ----------- |
 | pay_info |       | 支付信息    |
-
-
-
-
 
 #### 支付回调
 

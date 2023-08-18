@@ -8,7 +8,7 @@ from common.config.base_setting import MINA_APP
 
 from common.models.member.Member import Member
 from common.models.member.OauthMemberBind import OauthMemberBind
-
+from common.libs.Helper import getCurrentDate
 
 class MemberService:
 

@@ -119,25 +119,25 @@ def set():
         resp['msg'] = '请输入符合规范的售货价格'
         return jsonify(resp)
 
-    if main_image is None or len(main_image) < 3:
-        resp['code'] = -1
-        resp['msg'] = '请上传封面图'
-        return jsonify(resp)
+    # if main_image is None or len(main_image) < 3:
+    #     resp['code'] = -1
+    #     resp['msg'] = '请上传封面图'
+    #     return jsonify(resp)
 
-    if summary is None or len(summary) < 3:
-        resp['code'] = -1
-        resp['msg'] = '请输入图片面熟，并不能少于10个字符'
-        return jsonify(resp)
+    # if summary is None or len(summary) < 3:
+    #     resp['code'] = -1
+    #     resp['msg'] = '请输入描述，并不能少于10个字符'
+    #     return jsonify(resp)
 
-    if stock < 1:
-        resp['code'] = -1
-        resp['msg'] = '请输入符合规范的库存量'
-        return jsonify(resp)
+    # if stock < 1:
+    #     resp['code'] = -1
+    #     resp['msg'] = '请输入符合规范的库存量'
+    #     return jsonify(resp)
 
-    if tags is None or len(tags) < 1:
-        resp['code'] = -1
-        resp['msg'] = '请输入图书，便于搜索'
-        return jsonify(resp)
+    # if tags is None or len(tags) < 1:
+    #     resp['code'] = -1
+    #     resp['msg'] = '请输入标签，便于搜索'
+    #     return jsonify(resp)
 
     food_info = Food.query.filter_by(id=id).first()
     before_stock = 0
