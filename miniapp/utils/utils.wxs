@@ -1,0 +1,30 @@
+var login = function () {
+    console.log("hh")
+    wx.login({
+        success: function (res) {
+            console.log(res.code)
+            wx.request({
+                url: app.globalData.login,
+                method: 'POST',
+                data: {
+                    code: res.code,
+                    name: 'highvorz',
+                    gender: 0,
+                    avartarUrl: ''
+                },
+                header: {
+                    "Content-Type": "application/x-www-form-urlencoded"
+                },
+                success: function (res) {
+                    console.log(res)
+                    if (res.data.code == 200)
+                        console.log("登录成功")
+                },
+            })
+        }
+    }),
+
+    module.exports = {
+        login: login
+    }
+}

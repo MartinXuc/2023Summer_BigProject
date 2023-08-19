@@ -1,0 +1,7 @@
+{
+  "desc": "餐厅点餐小程序",
+  "rules": [{
+  "action": "allow",
+  "page": "*"
+  }]
+}

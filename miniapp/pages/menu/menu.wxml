@@ -1,0 +1,118 @@
+<!-- swiper -->
+
+<view class="{{whole_style}}">
+    <swiper class="poster" autoplay="true" interval="3000" duration="500" circular="true">
+        <swiper-item wx:for="{{swipers}}">
+            <image class="poster" src="{{item}}" mode="aspectFill" />
+        </swiper-item>
+    </swiper>
+
+    <!-- top ui -->
+    <view class="top-ui">
+        <view bindtap="return" class="circle">
+            <image class="return" src="/images/icon-return.png" />
+        </view>
+
+        <view bindtap="gotoGuide" class="circle">
+            <image class="guide" src="/images/icon-guide.png" />
+        </view>
+    </view>
+
+    <!-- menu -->
+    <view class="menu">
+        <view class="menu-toplayer">
+            <image src="/images/icon-megaphone.png" mode="" />
+            <text>"珍惜粮食 按需点餐"</text>
+        </view>
+        <view class="menu-shop">
+            <view class="menu-shop-left">
+                <image class="menu-shop-icon" src="/images/icon-shop.png" />
+                <view class="menu-shop-left-name">A23号</view>
+                <view class="menu-shop-left-method">到店</view>
+                <view class="menu-shop-left-distance">聚丰园路165号 | 837m</view>
+            </view>
+            <view class="menu-reservation">
+            </view>
+        </view>
+
+        <!-- menu table -->
+        <view class="menu-table">
+            <view class="menu-table-item" checked="checked">经典菜单</view>
+            <view class="menu-table-item">自在厨房</view>
+            <view class="menu-table-button">一起点</view>
+        </view>
+
+        <view class="menu-section">
+            <!-- tag -->
+            <view class="menu-section-buttonList">
+                <view wx:for="{{foodlist}}" bindtap='scroll' data-smile='{{index}}' class="menu-section-button">{{item.tag}}</view>
+            </view>
+
+            <!-- food -->
+            <scroll-view class="menu-section-foodList" scroll-y="true" bindscroll='scroll' scroll-into-view="{{toView}}">
+                <view wx:for="{{foodlist}}">
+                    <view id='view{{index}}' class="menu-section-foodKind">{{item.tag}}</view>
+                    <view wx:for="{{item.classfy_list}}">
+                        <view class="menu-section-food">
+                            <image src="{{item.img_url}}" class="menu-section-food-img"/>
+                            <view class="food-info">
+                                <view class="food-name">{{item.name}}</view>
+                                <view class="food-price">
+                                    <view style="font-size: 12px; color: #cc1414; font-weight: bold; margin-top: 6px;">￥</view>{{item.price}}
+                                </view>
+                                <view class="food-button">
+                                    <view bindtap='add_button' data-id="{{item.id}}" class="button">加入</view>
+                                    <view wx:if="{{order[item.id]}}" class="mark">{{order[item.id].number}}</view>
+                                </view>
+                            </view>
+                        </view>
+                    </view>
+                </view>
+                <view class="empty-view" style="height: 100px;"></view>
+            </scroll-view>
+
+
+        </view>
+    </view>
+</view>
+<!-- bar -->
+
+<view wx:if="{{total == 0}}" class="orderbar-before">未选购餐品</view>
+
+<view wx:else class="orderbar-after">
+    <view bindtap="detail_button" class="selected">
+        <image src="{{icon['orderbar']}}" mode="" />
+        <view class="mark">{{total}}</view>
+    </view>
+    <view class="price-to-pay">{{expense}}</view>
+    <view bindtap="gotoSubmit" class="done">选好了</view>
+</view>
+
+<view class="{{detail_style}}" style="height:{{height}}px">
+    <image class="detail-hide-arrow" bindtap="hiden_detail" src="/images/icon-arrow-down.png"/>
+    <view class="detail-top">
+        <view class="detail-top-text">购物车</view>
+        <view class="detail-clear">
+            <image src="" mode="" />
+            <view bindtap="clear" class="detail-clear-text">清空购物车</view>
+        </view>
+    </view>
+    <view class="detail-list">
+        <view wx:for="{{order}}" class="detail-item">
+            <image src="{{item.img_url}}" class="detail-item-img"/>
+            <view class="detail-item-content">
+                <view class="detail-item-content-foodname">{{item.name}}</view>
+                <view class="detail-item-content-foodprice">{{item.price}}</view>
+            </view>
+            <view class="detail-item-editArea">
+                <!-- <image src="" mode="" /> -->
+                <view class="detail-item-edit">定制</view>
+                <view class="detail-item-number">
+                    <image bindtap="minus_button" data-id="{{item.id}}" class="detail-item-number-img" src="/images/icon-minus.png" />
+                    <view class="detail-item-text">{{order[item.id].number}}</view>
+                    <image bindtap="add_button" data-id="{{item.id}}" class="detail-item-number-img" src="/images/icon-add.png"/>
+                </view>
+            </view>
+        </view>
+    </view>
+</view>

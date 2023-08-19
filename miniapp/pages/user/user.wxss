@@ -1,0 +1,95 @@
+page{
+    background-color: #f9f9f9;
+}
+
+.top-ui{
+    margin-top: 43px;
+    position: relative;
+    display: flex;
+}
+
+.return{
+    width: 20px;
+    height: 20px;
+    float: left;
+    position: absolute;
+    margin: 0 0 0 10px;
+}
+
+.title{
+    /* position: absolute; */
+    font-size: 18px;
+    margin: 0 auto 0 auto;
+}
+.user-info{
+    display: flex;
+    margin: 22px 0 0 32px;
+}
+.avatar{
+    width: 52px;
+    height: 52px;
+    border-radius: 26px;
+}
+
+.column{
+    display: flex;
+    flex-direction: column;
+    margin: 0 0 0 16px;
+}
+
+.username{
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.phoneNumber{
+    font-size: 13px;
+    margin-top: 4px;
+    font-weight: 550;
+}
+
+.list-box{
+    margin: 42px auto 0 auto;
+    width: 360px;
+    border-radius: 12px;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+}
+
+.subbox{
+    height: 50px;
+    border-bottom: solid #d9d9d9;
+    border-width: 1px;
+    display: flex;
+}
+
+.subbox:last-child{
+    border: none;
+}
+
+.subbox image{
+    width: 20px;
+    height: 20px;
+    margin: 23px 0 0 16px;
+}
+
+.content{
+    font-size: 14px;
+    font-weight: 500;
+    margin: 23px 0 0 7px;
+}
+
+.exit{
+    width: 302px;
+    height: 48px;
+    border: solid #d8d8d8;
+    border-radius: 24px;
+    font-size: 16px;
+    text-align: center;
+    line-height: 48px;
+    position: absolute;
+    bottom: 32px;
+    left: 50%;
+    transform: translate(-50%, 0%);
+}
