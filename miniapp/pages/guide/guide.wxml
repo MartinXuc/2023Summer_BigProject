@@ -1,0 +1,23 @@
+
+<view class="top">
+    <view class="top-row">
+        <image bindtap="return" class="top-return" src="/images/icon-return-dark.png"></image>
+        <view class="top-title">客服助手</view>
+    </view>
+</view>
+
+<view class="empty-view" style="height: 80px;"></view>
+
+<view class="chat-area">
+    <view wx:for="{{chat_log}}">
+        <view class="{{style[item.id]}}">
+            <image src="{{avatar[item.id]}}" class="avatar" />
+            <view class="text-block {{block_style[item.id]}}">{{item.text}}</view>
+        </view>
+    </view>
+</view>
+
+<view class="input-area">
+    <input class="input" bindinput="bindKeyInput" name="input-box" placeholder="" auto-focus="true" value="{{empty}}"/>
+    <view class="sendButton" bindtap="sendButton">发送</view>
+</view>

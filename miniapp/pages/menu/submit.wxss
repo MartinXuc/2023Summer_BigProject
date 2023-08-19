@@ -1,0 +1,227 @@
+page{
+    background-color: rgb(246, 246, 246);
+    font-family: sans-serif;
+}
+
+.top{
+    position: fixed;
+    width: 100%;
+    height: 80px;
+    background-color: #f6f6f6;
+}
+
+.top-row{
+    display: flex;
+    margin: 48px 0 0 0;
+    width: 100%;
+}
+
+.top-return{
+    position: absolute;
+    left: 5%;
+    width: 18px;
+    height: 18px;
+}
+
+.top-title{
+    font-size: 18px;
+    margin: 0 auto;
+    line-height: 20px;
+    text-align: center;
+}
+
+.shopInfo{
+    width: 95%;
+    height: 148px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-rows: 1fr 1fr;
+}
+
+.shopInfo-postion{
+    display: grid;
+    grid-template-columns: 1fr 7fr 2fr;
+    grid-gap: 8px;
+}
+
+.shopInfo-postion-img{
+    margin: 4px 0 4px 0;
+    width: 40px;
+    height: 40px;
+}
+
+.shopInfo-detail{
+    display: flex;
+    flex-direction: column;
+}
+
+.shopInfo-detail-settime{
+    margin-top: 4px;
+    display: flex;
+    height: 14px;
+}
+
+.shopInfo-method{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 8px;
+}
+
+.shopInfo-method-card{
+    height: 50px;
+    border-radius: 6px;
+    border-style: solid;
+    border-width: 1px;
+    border-color: rgb(217, 217, 217);
+}
+
+.shopInfo-method-card-selected{
+    height: 50px;
+    border-radius: 6px;
+    border-style: solid;
+    border-width: 2px;
+    border-color: #d62f36
+}
+
+
+.shopInfo-method-card-row{
+    display: flex;
+    margin: 10px 0 10px 8px;
+}
+
+.shopInfo-method-card image{
+    width: 30px;
+    height: 30px;
+}
+
+.shopInfo-method-card-selected image{
+    width: 30px;
+    height: 30px;
+}
+
+.shopInfo-method-card-content{
+    margin: 0 0 0 8px;
+}
+
+.orderInfo{
+    flex-direction: column;
+    display: flex;
+    margin: 8px auto;
+    width: 95%;
+    background-color: white;
+}
+
+.orderInfo-detail{
+    display: grid;
+    grid-template-columns: 1fr 4fr;
+    margin: 8px 8px;
+}
+
+.orderInfo-detail-img{
+    width: 40px;
+    height: 40px;
+}
+
+.orderInfo-detail-content{
+    margin: 0 0 0 8px;
+    display: grid;
+    grid-template-rows: 1fr 1fr;
+}
+
+.orderInfo-detail-content-name{
+    width: 100%;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.orderInfo-detail-content-count{
+    position: relative;
+    margin-top: 4px;
+    display: flex;
+}
+
+.orderInfo-detail-content-count-price{
+    position: absolute;
+    right: 8px;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.elseInfo{
+    width: 95%;
+    margin: 8px auto;
+    border-radius: 12px;
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+}
+
+.elseInfo-block{
+    position: relative;
+    width: 100%;
+    height: 40px;
+}
+
+.elseInfo-block-title{
+    position: absolute;
+    font-size: 14px;
+    line-height: 14px;
+    font-weight: bold;
+    top: 13px;
+    left: 8px;
+}
+
+.elseInfo-block-content{
+    height: 14px;
+    display: flex;
+    position: absolute;
+    font-size: 14px;
+    line-height: 14px;
+    color: gray;
+    top: 13px;
+    right: 8px;
+}
+
+
+
+.submit{
+    position: fixed;
+    bottom: 0px;
+    width: 100%;
+    height: 80px;
+    display: grid;
+    grid-template-columns: 5fr 2fr 4fr;
+    background-color: white;
+}
+
+.submit-count{
+    display: flex;
+    font-size: 20px;
+    font-weight: bold;
+    line-height: 20px;
+    padding-top: 24px;
+}
+
+.submit-button{
+    width: 80%;
+    height: 52px;
+    margin: 10px 10%;
+    border-radius: 26px;
+    background-color: #d62f36;
+    text-align: center;
+    box-sizing: border-box;
+    padding-top: 10px;
+}
+
+.chinese{
+    font-size: 18px; 
+    color: white;
+    line-height: 18px;
+}
+
+.english{
+    font-size: 14px; 
+    line-height: 14px;
+    margin: 2px;
+    color: white;
+}

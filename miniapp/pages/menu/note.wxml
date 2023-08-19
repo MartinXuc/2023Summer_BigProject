@@ -1,0 +1,6 @@
+<!--pages/menu/note.wxml-->
+<view class="input-box">
+    <input bindinput="bindKeyInput" placeholder="备注信息" placeholder-class="initial-note" class="note"/>
+</view>
+
+<view class="button" bindtap="send_note">提交</view>

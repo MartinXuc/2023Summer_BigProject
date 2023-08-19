@@ -1,0 +1,30 @@
+<view class="top">
+    <image class="return" bindtap="return" src="{{icon.return}}" mode="" />
+    <view class="prompt">我的订单</view>
+</view>
+
+
+<view wx:if="{{exist_order}}" class="tag">
+    <view wx:for="{{tags}}" bindtap="select_orderlist" data-id='{{index}}' class="{{ index == selected_id ? 'selected' : 'unselected'}}">{{item}}</view>
+</view>
+
+<view wx:if="{{exist_order}}" class="card-area">
+    <view wx:for="{{classify_list[selected_id]}}" class="card">
+        <view class="card-foodname">{{item.goods_list[0].name}}</view>
+        <view class="card-status">{{item.status_desc}}</view>
+        <image class="card-img" src="{{item.goods_list[0].pic_url}}" />
+        <view class="card-price"><span style="font-size: 12px;">￥</span>{{item.total_price}}
+            <view class="card-number">共2件</view>
+        </view>
+
+        <view class="card-date">{{item.date}}</view>
+        <view wx:if="{{item.status == -8}}" class="card-button" bindtap="pay" data-id="{{item}}">去支付</view>
+    </view>
+</view>
+
+
+
+<view wx:else class="no-order">
+    <view class="no-order-text">暂无订单信息</view>
+    <view bindtap="gotoMenu" class="no-order-button">去下单</view>
+</view>

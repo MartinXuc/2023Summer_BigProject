@@ -1,0 +1,87 @@
+<view class="top">
+    <view class="top-row">
+        <image bindtap="return" class="top-return" src="/images/icon-return-dark.png"></image>
+        <view class="top-title">确认订单</view>
+    </view>
+</view>
+
+<view class="empty-view" style="height: 80px;"></view>
+
+<view class="shopInfo">
+    <view class="shopInfo-postion">
+        <image class="shopInfo-postion-img" src="/images/icon-shop.png" />
+        <view class="shopInfo-detail">
+            <view style="font-size: 20px;">聚丰-{{seat_id}}</view>
+            <view class="shopInfo-detail-settime">
+                <view style="font-size: 14px; color: gray; line-height: 14px;">取餐时间</view>
+                <image style="width: 10px; height: 10px; margin: 2px 0 0 2px;" src="/images/icon-arrow-right.png" />
+            </view>
+        </view>
+        <view class="shopInfo-distance">
+            <text style="font-size: 14px; line-height: 14px;">997m</text>
+            <image style="width: 10px; height: 10px; margin: 2px 0 0 2px;" src="/images/icon-arrow-right.png" />
+        </view>
+    </view>
+    <view class="shopInfo-method">
+        <view class="{{methodCard_style_selected}}" bindtap="select_method" data-id="eat_in">
+            <view class="shopInfo-method-card-row">
+                <image src="/images/icon-eat_in.png" />
+                <view class="shopInfo-method-card-content">
+                    <view style="font-size: 14px; font-weight: bold; line-height: 14px;">堂食</view>
+                    <view style="font-size: 11px; color: gray; line-height: 11px; margin-top: 4px;">店内就餐</view>
+                </view>
+            </view>
+        </view>
+        <view class="{{methodCard_style_unselected}}" bindtap="select_method" data-id="eat_out">
+            <view class="shopInfo-method-card-row">
+                <image src="/images/icon-eat_out.png" />
+                <view class="shopInfo-method-card-content">
+                    <view style="font-size: 14px; font-weight: bold; line-height: 14px;">外带</view>
+                    <view style="font-size: 11px; color: #d62f36; font-weight: bold; line-height: 11px; margin-top: 4px;">少接触 更安心</view>
+                </view>
+            </view>
+        </view>
+    </view>
+</view>
+
+
+<view class="orderInfo">
+    <view style="margin: 8px 0 0 8px; font-size: 14px; font-weight: bold;">餐品详情</view>
+    <view class="orderInfo-detail" wx:for="{{check.order}}">
+        <image class="orderInfo-detail-img" src="{{item.img_url}}" />
+        <view class="orderInfo-detail-content">
+            <view class="orderInfo-detail-content-name">{{item.name}}</view>
+            <view class="orderInfo-detail-content-count">
+                <view style="font-size: 14px; font-weight: bold;"><text style="font-size: 12px; font-weight: bold;">x</text>{{item.number}}</view>
+                <view class="orderInfo-detail-content-count-price">
+                    <text style="font-size: 12px; font-weight: bold;">￥</text>{{item.count}}
+                </view>
+            </view>
+        </view>
+    </view>
+</view>
+
+<view class="elseInfo">
+    <view class="elseInfo-block" bindtap="gotoNote">
+        <view class="elseInfo-block-title">备注</view>
+        <view class="elseInfo-block-content">
+            <view style="font-size: 14px; line-height: 14px;">口味, 偏好等要求</view>
+            <image style="width: 12px; height: 12px; margin: 1px 0 0 1px;" src="/images/icon-arrow-right-gray.png" />
+        </view>
+    </view>
+    <view class="elseInfo-block">
+        <view class="elseInfo-block-title">开票方式</view>
+        <view class="elseInfo-block-content">请在取餐时洽服务员开票</view>
+    </view>
+</view>
+
+<view class="submit">
+    <view class="empty-view"></view>
+    <view class="submit-count">
+        ￥{{check.expense}}
+    </view>
+    <view bindtap="submit" class="submit-button">
+        <view class="chinese">提交订单</view>
+        <view class="english">Checkout</view>
+    </view>
+</view>

@@ -1,0 +1,35 @@
+<view class="top">
+    <view class="title">{{title}}</view>
+</view>
+
+<image bindtap='return' class="return" src="/images/icon-return.png" mode="" />
+
+<view class="card" wx:for="{{package}}">
+    <view class="card-top">
+        <image src="{{item.imgUrl}}"/>
+        <view class="card-content">
+            <view class="name">{{item.food_name}}</view>
+            <view class="tag">热销</view>
+            <view class="price">{{item.sale_price}}元</view>
+            <view class="row-direction">
+                <view class="validity">{{item.start_date_str}}-{{item.end_date_str}}</view>
+                <view wx:if="{{item.status}}" class="button" bindtap="usePackage" data-id="{{item.id}}">立即使用</view>
+                <view wx:else class="expire">已过期</view>
+            </view>
+            
+        </view>
+    </view>
+
+    <view class="card-bottom">
+        <view class="left-edge"></view>
+        <view class="right-edge"></view>
+        <image src="/images/icon-help.png" mode=""/>
+        <view class="description">兑换说明</view>
+        <view class="checkcode">
+            <view class="show-checkcode">展示核销码</view>
+            <image src="/images/icon-arrow-down.png" mode=""/>
+        </view>
+    </view>
+</view>
+
+

@@ -1,0 +1,139 @@
+
+page {
+    background-color: rgb(235, 235, 235);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.top{
+    display: flex;
+    margin-top: 45px;
+    
+    /* background-color: #d62f36; */
+}
+.prompt{
+    font-size: 18px;
+    margin: 0 auto;
+    line-height: 20px;
+    text-align: center;
+}
+
+.selected{
+    font-weight: bold;
+}
+
+.unselected{
+    font-weight: normal;
+}
+
+.return{
+    position: absolute;
+    left: 15px;
+    width: 18px;
+    height: 18px;
+}
+
+.no-order{
+    margin-top: 300px;
+    display: flex;
+    flex-direction: column;
+}
+
+.no-order-text{
+    margin: 0 auto;
+    font-size: 16px;
+}
+
+.no-order-button{
+    margin: 27px auto;
+    width: 135px;
+    height: 48px;
+    border-radius: 24px;
+    background-color: #d62f36;
+    text-align: center;
+    color: white;
+    line-height: 48px;
+}
+
+.tag{
+    margin: 20px 0;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    text-align: center;
+}
+
+.card-area{
+    height: 100%;
+    overflow: auto;
+}
+
+.card{
+    background-color: white;
+    width: 96%;
+    margin: 0 auto 20px auto;
+    border-radius: 8px;
+
+    display: grid;
+    grid-template-columns: repeat(2, 50%);
+    grid-gap: 20px 0;
+    grid-template-rows: 20px 40px 12px 36px;
+    grid-template-areas: "card-foodname card-status"
+                "card-img card-price"
+                "card-date ."
+                "card-button card-button";
+                
+}
+
+.card-foodname{
+    grid-area: card-foodname;
+    margin: 8px 0 0 8px;
+    font-weight: bold;
+}
+
+.card-status{
+    grid-area: card-status;
+    text-align: right;
+    margin: 8px 8px 0 0;
+    font-size: 14px;
+    color: gray;
+}
+
+.card-img{
+    grid-area: card-img;
+    width: 50px;
+    height: 50px;
+    margin: 8px 0 0 8px;
+}
+
+.card-price{
+    grid-area: card-price;
+    text-align: right;
+    margin: 8px 8px 0 0;
+}
+
+.card-number{
+    text-align: right;
+    margin: 8px 8px 0 0;
+}
+
+.card-date{
+    grid-area: card-date;
+    font-size: 12px;
+    color: gray;
+    padding: 8px 0 0 8px;
+}
+
+.card-button{
+    grid-area: card-button;
+    width: 20%;
+    height: 20px;
+    color: red;
+    border: 1px solid red;
+    border-radius: 10px;
+    text-align: center;
+    margin: 8px 8px 0 auto;
+    line-height: 20px;
+    font-size: 14px;
+}

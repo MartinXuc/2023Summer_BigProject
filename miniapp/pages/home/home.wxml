@@ -1,0 +1,124 @@
+<!-- poster -->
+<image class="poster" src="{{resource['poster']}}" mode="aspectFill" />
+
+<!-- preview -->
+<view class="preview">
+    <!-- user info -->
+    <view wx:if="{{login_status}}" class="preview-user">
+        <image bindtap='toUser' class="preview-user-avatar" src="{{userinfo.avatarUrl}}" />
+        <view bindtap='toUser' class="preview-user-name">{{userinfo.nickName}}</view>
+        <image bindtap='toUser' class="preview-user-rightarrow" src="{{resource['arrow-right']}}" />
+        <view class="preview-user-list">
+            <view bindtap='toPackage' class="preview-user-list-item">
+                <image src="{{icon.icon_package}}" />
+                <text>卡包</text>
+            </view>
+            <view bindtap='toOrder' class="preview-user-list-item">
+                <image src="{{icon.icon_order}}" />
+                <text>订单</text>
+            </view>
+            <view bindtap='toVipcode' class="preview-user-list-item">
+                <image src="{{icon.icon_QRcode}}" />
+                <text class=".name">会员码</text>
+            </view>
+        </view>
+    </view>
+
+    <view wx:else class="preview-user">
+        <image bindtap='toUser' class="preview-user-avatar" src="{{default_avatar}}" />
+        <view bindtap='toUser' class="preview-user-name">Hi ~</view>
+        <view class="preview-user-list">
+            <view bindtap='login' class="preview-user-login">登录</view>
+        </view>
+    </view>
+
+    <!-- store info -->
+    <view class="preview-store">
+        <view class="preview-store-info">
+            <text bindtap="scan" class='preview-store-info-address'>{{shop.seat_id}}</text>
+            <view class='preview-store-info-detail'>
+                <text>{{shop.address}}
+                    {{shop.time}}
+                </text>
+            </view>
+            <view class="preview-store-info-icon">
+                <image src="{{icon.icon_drink}}" mode="" />
+                <text>早餐</text>
+            </view>
+        </view>
+
+        <image class="preview-store-image" src="{{resource['store']}}" mode="" />
+
+    </view>
+</view>
+
+<!-- order bar -->
+<view class="order" bindtap="toMenu">
+    <image src="{{icon.icon_tableware}}" mode="" />
+    <view class="order-content">
+        <text class="CN">开始点餐\n</text>
+        <text class="EN">Order Now</text>
+    </view>
+</view>
+
+<!-- my card -->
+<view class="mycard">
+    <view class="mycard-tag">我的卡包</view>
+    <view class="mycard-area">
+
+        <view wx:if="{{login_status == true}}" wx:for="{{package}}" class="mycard-card">
+            <view class="left-edge"></view>
+            <view class="right-edge"></view>
+            <image class="mycard-after-login" src="{{item.imgUrl}}"/>
+            <view class="mycard-card-text">
+                <view class="mycard-card-goods">{{item.food_name}}</view>
+                <view class="mycard-card-price">{{item.sale_price}}</view>
+            </view>
+            <view class="mycard-card-button" style="width: 70px;" bindtap="usePackage" data-id="{{item.id}}">立即使用</view>
+        </view>
+
+        <!-- before-login-mycard  -->
+        <view wx:if="{{login_status == false}}" class="mycard-card">
+            <view class="left-edge"></view>
+            <view class="right-edge"></view>
+            <image src="{{icon.mycard_package}}" class="mycard-before-login" mode="" />
+            <view class="mycard-card-text">
+                <view class="mycard-before-login-prompt">登录后可查看卡券</view>
+                <view class="mycard-before-login-prompt-small">使用卡券更优惠</view>
+            </view>
+            <view bindtap="login" class="mycard-card-button" style="width: 70px;">登录查看</view>
+        </view>
+    </view>
+</view>
+
+<!-- recommand -->
+<view wx:if="{{login_status == true}}" class="recommand">
+    <!-- <view class="recommand-tag">店家推荐</view>
+    <view wx:for='{{recommand}}' class="recommand-card">
+
+    </view> -->
+</view>
+
+<view wx:else class="discount">
+    <view class="discount-center">
+        <view class="discount-top">大神卡 套餐6折</view>
+        <view class="discount-card-area">
+            <view class="discount-card" wx:for="{{discount}}">
+                <image src="{{item.imgUrl}}" mode="" />
+                <view class="discount-content">
+                    <view class="discount-card-name">{{item.name}}</view>
+                    <view class="discount-card-price">￥{{item.sale_price}}</view>
+                </view>
+                <view class="discount-card-add">+</view>
+            </view>
+        </view>
+    </view>
+
+</view>
+
+<!-- endline -->
+<div class="endline">
+    <span class="line"></span>
+    <span class="text">已经是底部了</span>
+    <span class="line"></span>
+</div>

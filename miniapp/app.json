@@ -1,0 +1,25 @@
+{
+  "pages":[
+    "pages/home/home",
+    "pages/order/order",
+    "pages/package/package",
+    "pages/vipcode/vipcode",
+    "pages/menu/note",
+    "pages/menu/submit",
+    "pages/guide/guide",
+    "pages/login/login",
+    
+    "pages/menu/menu",
+    "pages/user/user",
+   
+    "pages/detail/detail",
+    
+    "pages/logs/logs"
+  ],
+  "window": {
+    "navigationStyle": "custom"
+  },
+  "style": "v2",
+  "lazyCodeLoading": "requiredComponents",
+  "sitemapLocation": "sitemap.json"
+}

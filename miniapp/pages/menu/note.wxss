@@ -1,0 +1,36 @@
+page{
+    background-color: rgb(246, 246, 246);
+    font-family: sans-serif;
+    position: relative;
+}
+
+.input-box{
+    margin: 20px auto;
+    width: 96%;
+    height: 120px;
+    border-radius: 12px;
+    background-color: white;
+}
+
+.initial-comment{
+    color: gray;
+}
+
+.comment{
+    color: black;
+}
+
+.button{
+    margin-top: 20px;
+    width: 16%;
+    height: 28px;
+    border-radius: 14px;
+    background-color: #cc1414;
+    text-align: center;
+    line-height: 28px;
+    font-size: 16px;
+    color:white;
+
+    position: absolute;
+    right: 20px;
+}

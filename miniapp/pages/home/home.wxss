@@ -1,0 +1,393 @@
+page {
+    background-color: rgb(245, 245, 245);
+}
+
+.poster {
+    width: 100%;
+    height: 264px;
+    margin: 0;
+    display: block;
+}
+
+.preview {
+    width: 90%;
+    margin: -40px auto 0 auto;
+}
+
+.preview-user {
+    height: 52px;
+    display: flex;
+    flex-direction: row;
+    background-color: #efefef;
+    border-top-left-radius: 12px;
+    border-top-right-radius: 12px;
+}
+
+.preview-user-avatar {
+    width: 32px;
+    height: 32px;
+    border-radius: 14px;
+    margin: 10px 0 0 16px;
+}
+
+.preview-user-name {
+    font-family: -apple-system, sans-serif;
+    font-size: 14px;
+    /* width: 96px; */
+    height: 20px;
+    margin: 18px 0 0 12px;
+}
+
+.preview-user-rightarrow {
+    width: 12px;
+    height: 12px;
+    margin: 22px 0 0 0;
+}
+
+.preview-user-list {
+    margin-left: auto;
+    display: flex;
+    flex-direction: row;
+}
+
+.preview-user-login{
+    margin: 12px 20px 0 0;
+    width: 48px;
+    height: 30px;
+    background-color: #d62f36;
+    text-align: center;
+    line-height: 30px;
+    border-radius: 15px;
+    color: white;
+    font-size: 13px;
+}
+
+.preview-user-list-item {
+    margin: 8px 20px 0 0;
+    display: flex;
+    flex-direction: column;
+}
+
+.preview-user-list-item image {
+    width: 20px;
+    height: 20px;
+    margin: 4px auto 0 auto;
+}
+
+.preview-user-list-item text {
+    margin: 1px auto;
+    font-size: 10px;
+    font-weight: bold;
+}
+
+.preview-store {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    height: 136px;
+    background-color: white;
+    margin: 0 auto;
+    border-radius: 0 0 12px 12px;
+}
+
+.preview-store-info {
+    margin: 16px 0 0 12px;
+}
+
+.preview-store-info-address {
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.preview-store-info-detail {
+    margin-top: 14px;
+    font-size: 10px;
+    color: rgb(153, 153, 153);
+}
+
+.preview-store-info-icon {
+    display: flex;
+}
+
+.preview-store-info-icon image {
+    margin-top: 10px;
+    margin-left: 12px;
+    width: 12px;
+    height: 12px;
+    display: inline-block;
+}
+
+.preview-store-info-icon text {
+    margin: 9px 0 0 12px;
+    font-size: 10px;
+    font-weight: bold;
+}
+
+.preview-store-image {
+    width: 90px;
+    height: 90px;
+    margin: 23px 0 auto auto;
+}
+
+.order {
+    width: 90%;
+    height: 56px;
+    margin: 22px auto 0 auto;
+    background-color: rgb(229, 45, 45);
+    border-radius: 28px;
+    display: flex;
+    flex-direction: row;
+}
+
+.order image {
+    width: 25px;
+    height: 25px;
+    margin: 15px 0 0 127px;
+}
+
+.order-content {
+    width: auto;
+    height: 56px;
+}
+
+.order-content .CN {
+    display: block;
+    margin-top: 8px;
+    font-size: 18px;
+    color: white;
+}
+
+.order-content .EN {
+    display: block;
+    font-size: 13px;
+    color: white;
+}
+
+.mycard {
+    margin: 35px 0 0 22px;
+    height: 122px;
+}
+
+.mycard-tag {
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.mycard-area{
+    height: 98px;
+    display: flex;
+    overflow-x: scroll;
+    overflow-y: hidden;
+    white-space: nowrap;
+}
+
+.mycard-before-login{
+    width: 40px;
+    height: 40px;
+    margin: 26px 0 0 28px;
+}
+
+.mycard-before-login-prompt{
+    font-weight: bold;
+    font-size: 16px;
+    margin: 10px 0 0 16px;
+}
+
+.mycard-before-login-prompt-small{
+    font-size: 12px;
+    color: gray;
+    margin: 2px 0 0 16px;
+}
+
+.mycard-card {
+    margin-top: 4px;
+    flex-shrink: 0;
+    width: 80%;
+    height: 98px;
+    background-color: white;
+    margin-right: 10px;
+    border-radius: 12px;
+    display: flex;
+    flex-direction: row;
+    position: relative;
+}
+
+.left-edge{
+    position: absolute;
+    top: 41px;
+    left: -8px;
+    width: 16px;
+    height: 16px;
+    border-radius: 8px;
+    background-color: rgb(245, 245, 245);
+}
+
+.right-edge{
+    position: absolute;
+    top: 41px;
+    right: -8px;
+    width: 16px;
+    height: 16px;
+    border-radius: 8px;
+    background-color: rgb(245, 245, 245);
+}
+
+.mycard-after-login {
+    display: inline-block;
+    width: 80px;
+    height: 80px;
+    margin: 6px 0 6px 10px;
+}
+
+.mycard-card-text {
+    margin: 17px 0 0 8px;
+}
+
+.mycard-card-goods {
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.mycard-card-price {
+    font-size: 22px;
+    font-weight: bold;
+    color: #d42d34;
+}
+
+.mycard-card-button {
+    background-color: #d42d34;
+    width: 70px;
+    height: 30px;
+    border-radius: 15px;
+    color: white;
+    margin: 37px 17px auto auto;
+    font-size: 13px;
+    font-weight: bold;
+    text-align: center;
+    line-height: 30px;
+}
+
+.recommand {
+    margin: 35px 0 0 22px;
+    width: 95%;
+}
+
+.recommand-tag {
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.recommand-card {
+    margin: 4px 0 12px 0;
+    width: 332px;
+    height: 98px;
+    background-color: white;
+    border-radius: 12px;
+    display: flex;
+    font-display: row;
+}
+
+.discount{
+    margin: 20px auto;
+    width: 90%;
+    height: 140px;
+    border-radius: 8px;
+    background-color: rgb(53, 46, 46);
+    display: flex;
+    flex-direction: column;
+}
+.discount-center{
+    margin: 12px auto;
+    width: 90%;
+}
+
+.discount-top{
+    color: goldenrod;
+    font-weight: bold;
+    font-size: 14px;
+}
+
+.discount-card-area{
+    width: 100%;
+    height: 80px;
+    margin: 10px auto;
+    display: grid;
+    grid-gap: 12px;
+    grid-template-columns: 1fr 1fr;
+}
+
+.discount-card{
+    display: flex;
+    border-radius: 4px;
+    background-color: white;
+    position: relative;
+}
+
+.discount-card image{
+    width: 50px;
+    height: 50px;
+    margin: 14px 0 0 2px;
+}
+
+.discount-card-text{
+    display: flex;
+    flex-direction: column;
+    margin: 12px 0 0 10px;
+}
+
+.discount-card-name{
+    font-weight: bold;
+    font-size: 14px;
+}
+
+.discount-card-price{
+    color: #d42d34;
+    font-size: 15px;
+    margin-top: 10px;
+}
+
+.discount-card-add{
+    position: absolute;
+    right: 0px;
+    bottom: 0px;
+    width: 20px;
+    height: 20px;
+    background-color: #d42d34;
+    border-top-left-radius: 4px;
+    border-bottom-right-radius: 4px;
+    color: white;
+    /* font-weight: bold; */
+    line-height: 20px;
+    text-align: center;
+    font-size: 16px;
+}
+
+.discount-content{
+    display: flex;
+    flex-direction: column;
+    margin: 16px 0 0 6px;
+}
+
+.endline {
+    width: 80%;
+    height: 40px;
+    line-height: 20px;
+    text-align: center;
+    margin: 20px auto 0 auto;
+    display: flex;
+    font-display: row;
+}
+
+.endline .line {
+    width: 130px;
+    margin-top: 10px;
+    border-top: 1px solid #ccc;
+}
+
+.endline .text {
+    font-size: 12px;
+    margin: 0 20px 0 20px;
+    width: 100px;
+    color: #686868;
+    vertical-align: center;
+}
